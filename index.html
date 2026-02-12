@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextStream | Partner Qualification Portal</title>
+    <title>NextStream | Global Partner Portal</title>
     <style>
         :root {
             --ns-dark: #0a192f;
@@ -32,6 +32,30 @@
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-top: 4px solid var(--ns-green);
+            position: relative;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .lang-btn {
+            background: var(--ns-hover);
+            color: var(--ns-green);
+            border: 1px solid var(--ns-green);
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--ns-green);
+            color: var(--ns-dark);
         }
 
         h1, h2, h3, h4 {
@@ -43,7 +67,6 @@
         h1 { font-size: 1.8rem; border-bottom: 2px solid var(--ns-green); padding-bottom: 15px; margin-bottom: 30px; }
         h2 { font-size: 1.3rem; margin-top: 40px; background: rgba(0, 255, 157, 0.1); padding: 10px; border-radius: 4px; }
         h3 { font-size: 1rem; color: var(--ns-light); margin-top: 25px; border-bottom: 1px solid var(--ns-hover); padding-bottom: 5px;}
-        h4 { font-size: 0.9rem; color: var(--ns-grey); margin-bottom: 10px; margin-top: 15px; }
 
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: #ccd6f6; font-size: 0.9rem; }
@@ -61,7 +84,6 @@
 
         input:focus, select:focus, textarea:focus { outline: 2px solid var(--ns-green); border-color: transparent; }
 
-        /* Grid de Localidades */
         .location-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -83,17 +105,8 @@
             padding-bottom: 5px;
         }
 
-        /* Serviços Grid */
-        .services-wrapper {
-            background: #0d1b33;
-            padding: 15px;
-            border-radius: 6px;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 10px;
-        }
+        .services-wrapper { background: #0d1b33; padding: 15px; border-radius: 6px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
         .service-item {
             background: var(--ns-hover);
             padding: 8px 12px;
@@ -107,7 +120,6 @@
         .service-item:hover { border-color: var(--ns-green); }
         .service-item input { margin-right: 10px; width: auto; }
         
-        /* Tags de Receita */
         .tag-mrc { color: #4dabf7; font-weight: bold; font-size: 0.75rem; margin-left: auto; }
         .tag-nrc { color: #ffab00; font-weight: bold; font-size: 0.75rem; margin-left: auto; }
         .tag-both { color: var(--ns-green); font-weight: bold; font-size: 0.75rem; margin-left: auto; }
@@ -136,155 +148,142 @@
         }
         .btn-submit:hover { opacity: 0.9; }
 
-        #output-area {
-            margin-top: 40px;
-            display: none;
-        }
-        #output-text {
-            width: 100%;
-            height: 400px;
-            background: #000;
-            color: #0f0;
-            font-family: 'Consolas', monospace;
-            padding: 20px;
-            border: 1px solid #333;
-        }
-        .copy-btn {
-            background: var(--ns-grey);
-            color: var(--ns-dark);
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+        #output-area { margin-top: 40px; display: none; }
+        #output-text { width: 100%; height: 400px; background: #000; color: #0f0; font-family: 'Consolas', monospace; padding: 20px; border: 1px solid #333; }
+        .copy-btn { background: var(--ns-grey); color: var(--ns-dark); padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+    </div>
+
     <div style="text-align: center;">
         <h1 style="border:none; margin-bottom: 5px;">NEXTSTREAM</h1>
-        <p style="color: var(--ns-grey); font-size: 0.9rem;">HubSpot Integrated Deal Registration Form</p>
+        <p style="color: var(--ns-grey); font-size: 0.9rem;" data-i18n="subtitle">HubSpot Integrated Deal Registration Form</p>
     </div>
 
     <form id="dealForm">
         
-        <h2>1. Perfil da Oportunidade</h2>
+        <h2 data-i18n="section1_title">1. Perfil da Oportunidade</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
-                <label>Parceiro / Solicitante</label>
+                <label data-i18n="partner_label">Parceiro / Solicitante</label>
                 <input type="text" id="partnerName" required>
             </div>
             <div class="form-group">
-                <label>Cliente Final (Setor/Indústria)</label>
+                <label data-i18n="client_label">Cliente Final (Setor/Indústria)</label>
                 <input type="text" id="endClient" required>
             </div>
         </div>
         <div class="form-group">
-            <label>Data da Solicitação</label>
+            <label data-i18n="date_label">Data da Solicitação</label>
             <input type="date" id="reqDate" required>
         </div>
 
-        <label>Localidade de Interesse (Sites)</label>
+        <label data-i18n="location_label">Localidade de Interesse (Sites)</label>
         <div class="location-grid">
             <div class="location-card">
-                <span class="country-title">🇧🇷 BRASIL</span>
+                <span class="country-title" data-i18n="country_br">🇧🇷 BRASIL</span>
                 <label><input type="checkbox" name="site" value="BR-Tambore"> Tamboré</label>
                 <label><input type="checkbox" name="site" value="BR-Curitiba"> Curitiba</label>
             </div>
             <div class="location-card">
-                <span class="country-title">🇲🇽 MÉXICO</span>
+                <span class="country-title" data-i18n="country_mx">🇲🇽 MÉXICO</span>
                 <label><input type="checkbox" name="site" value="MX-Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
             </div>
             <div class="location-card">
-                <span class="country-title">🇨🇱 CHILE</span>
+                <span class="country-title" data-i18n="country_cl">🇨🇱 CHILE</span>
                 <label><input type="checkbox" name="site" value="CL-Paine"> Paine</label>
-                <label><input type="checkbox" name="site" value="CL-Apoquindo"> Apoquindo/San Martin</label>
+                <label><input type="checkbox" name="site" value="CL-Apoquindo"> Apoquindo</label>
             </div>
             <div class="location-card">
-                <span class="country-title">🇵🇪 PERU</span>
+                <span class="country-title" data-i18n="country_pe">🇵🇪 PERU</span>
                 <label><input type="checkbox" name="site" value="PE-Lince"> Lince</label>
                 <label><input type="checkbox" name="site" value="PE-Monterico"> Monterico</label>
             </div>
             <div class="location-card">
-                <span class="country-title">🇦🇷 ARGENTINA</span>
+                <span class="country-title" data-i18n="country_ar">🇦🇷 ARGENTINA</span>
                 <label><input type="checkbox" name="site" value="AR-Barracas"> Barracas</label>
                 <label><input type="checkbox" name="site" value="AR-Velez"> Velez</label>
             </div>
         </div>
         <div class="form-group" style="margin-top:10px;">
-            <input type="text" id="locObs" placeholder="Observações sobre localização...">
+            <input type="text" id="locObs" data-i18n-placeholder="loc_obs_ph">
         </div>
 
-        <h2>2. Infraestrutura (Missão Crítica)</h2>
+        <h2 data-i18n="section2_title">2. Infraestrutura (Missão Crítica)</h2>
         
-        <div id="mexicoAlert" class="alert">
-            <strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA[cite: 102, 107].
+        <div id="mexicoAlert" class="alert" data-i18n="alert_mx">
+            <strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
             <div class="form-group">
-                <label>Qtd. Racks</label>
-                <input type="number" id="rackQty" placeholder="Padrão: 1/2 Rack (22U)" required>
+                <label data-i18n="rack_label">Qtd. Racks</label>
+                <input type="number" id="rackQty" data-i18n-placeholder="rack_ph" required>
             </div>
             <div class="form-group">
-                <label>Densidade (kVA Nominal)</label>
-                <input type="number" id="density" placeholder="Padrão: 1 kVA" step="0.5" required>
+                <label data-i18n="density_label">Densidade (kVA Real)</label>
+                <input type="number" id="density" data-i18n-placeholder="density_ph" step="0.5" required>
             </div>
              <div class="form-group">
-                <label>Modelo Setup (CAPEX)</label>
+                <label data-i18n="setup_label">Modelo Setup (CAPEX)</label>
                 <select id="setupModel">
-                    <option value="Upfront">Upfront (Pagamento Integral)</option>
-                    <option value="Diluido">Diluído na Mensalidade (OpEx)</option>
+                    <option value="Upfront" data-i18n="opt_upfront">Upfront (Pagamento Integral)</option>
+                    <option value="Diluido" data-i18n="opt_diluted">Diluído na Mensalidade (OpEx)</option>
                 </select>
             </div>
         </div>
-        <input type="text" id="setupObs" placeholder="Observações sobre setup...">
+        <input type="text" id="setupObs" data-i18n-placeholder="setup_obs_ph">
 
-        <h2>3. Conectividade & IP</h2>
+        <h2 data-i18n="section3_title">3. Conectividade & IP</h2>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
-                <label>Modelo de Conexão</label>
+                <label data-i18n="conn_model_label">Modelo de Conexão</label>
                 <select id="connModel">
-                    <option value="">Selecione...</option>
-                    <option value="Fibra Apagada">Fibra Apagada</option>
-                    <option value="L2L">L2L (Lan to Lan)</option>
+                    <option value="" data-i18n="opt_select">Selecione...</option>
+                    <option value="Fibra Apagada" data-i18n="opt_darkfiber">Fibra Apagada</option>
+                    <option value="L2L" data-i18n="opt_l2l">L2L (Lan to Lan)</option>
                     <option value="MPLS">MPLS</option>
-                    <option value="Internet Dedicada">Internet Dedicada</option>
-                    <option value="Outro">Outro</option>
+                    <option value="Internet Dedicada" data-i18n="opt_dia">Internet Dedicada</option>
+                    <option value="Outro" data-i18n="opt_other">Outro</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Configuração Link</label>
+                <label data-i18n="link_config_label">Configuração Link</label>
                 <select id="linkConfig">
-                    <option value="Singelo">Singelo</option>
-                    <option value="Redundante">Redundante</option>
+                    <option value="Singelo" data-i18n="opt_single">Singelo</option>
+                    <option value="Redundante" data-i18n="opt_redundant">Redundante</option>
                 </select>
             </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
             <div class="form-group">
-                <label>Banda Internet</label>
-                <input type="text" id="bandwidth" placeholder="Ex: 100 Mbps ou 10 Gbps">
+                <label data-i18n="bandwidth_label">Banda Internet</label>
+                <input type="text" id="bandwidth" data-i18n-placeholder="bandwidth_ph">
             </div>
             <div class="form-group">
-                <label>Endereçamento IPv4</label>
+                <label data-i18n="ip_label">Endereçamento IPv4</label>
                 <select id="ipAddress">
-                    <option value="Nenhum">Nenhum</option>
-                    <option value="/29">/29 (5 IPs úteis)</option>
-                    <option value="/28">/28 (13 IPs úteis)</option>
-                    <option value="Outro">Outro (Especificar)</option>
+                    <option value="Nenhum" data-i18n="opt_none">Nenhum</option>
+                    <option value="/29">/29 (5 IPs)</option>
+                    <option value="/28">/28 (13 IPs)</option>
+                    <option value="Outro" data-i18n="opt_other">Outro</option>
                 </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label>Operadora de Preferência [cite: 127-147]</label>
+            <label data-i18n="carrier_label">Operadora de Preferência</label>
             <select id="carrier">
-                <option value="Agnostico">Sem preferência (Carrier Neutral)</option>
+                <option value="Agnostico" data-i18n="opt_carrier_neutral">Sem preferência (Carrier Neutral)</option>
                 <optgroup label="🇧🇷 Brasil">
                     <option value="BRFIBRA">BRFIBRA</option>
                     <option value="ALGAR">ALGAR</option>
@@ -310,183 +309,241 @@
                 </optgroup>
             </select>
         </div>
-        <input type="text" id="connObs" placeholder="Observações sobre conectividade...">
+        <input type="text" id="connObs" data-i18n-placeholder="conn_obs_ph">
 
-        <h2>4. Portfólio de Serviços (HubSpot Mapping)</h2>
-        <p style="font-size: 0.8rem; color: var(--ns-grey); margin-bottom: 15px;">Selecione os adicionais. Tags indicam tipo de receita: <span style="color:#4dabf7">MRC (Mensal)</span> | <span style="color:#ffab00">NRC (One-time)</span></p>
+        <h2 data-i18n="section4_title">4. Portfólio de Serviços (HubSpot Mapping)</h2>
+        <p style="font-size: 0.8rem; color: var(--ns-grey); margin-bottom: 15px;" data-i18n="services_subtitle">Selecione os adicionais. Tags indicam tipo de receita: MRC (Mensal) | NRC (One-time)</p>
 
         <div class="services-wrapper">
-            <h3>4.1 Conectividade</h3>
+            <h3 data-i18n="sub_conn">4.1 Conectividade</h3>
             <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Interno) - UTP/Fibra"> Cross Connect Interno</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Externo)"> Cross Connect Externo</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Optical Fiber (24/48/96 fios)"> Optical Fiber Backbone</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="On-net Carriers"> On-net con carriers</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Acesso IX / Peering"> Acesso IX / Peering</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cloud Connect (AWS/Azure/GCP)"> Cloud Connect</label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Int)"><span data-i18n="srv_cc_int">Cross Connect Interno</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Ext)"><span data-i18n="srv_cc_ext">Cross Connect Externo</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Optical Fiber"><span data-i18n="srv_fiber">Optical Fiber Backbone</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="On-net Carriers"><span data-i18n="srv_onnet">On-net con carriers</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Peering"><span data-i18n="srv_peering">Acesso IX / Peering</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Cloud Connect"><span data-i18n="srv_cloud_conn">Cloud Connect</span></label> <span class="tag-mrc">MRC</span></div>
             </div>
 
-            <h3>4.2 Espaço & Infraestrutura</h3>
+            <h3 data-i18n="sub_space">4.2 Espaço & Infraestrutura</h3>
             <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Renta de Espaço (Land/Storage)"> Renta de Espaço</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="WorkArea"> WorkArea</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cage (Gaiola)"> Cage (Gaiola)</label> <span class="tag-nrc">NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Rack (Conversão/Instalação)"> Rack (Instalação/Conversão)</label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Space Rent"><span data-i18n="srv_space_rent">Renta de Espaço</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="WorkArea"><span data-i18n="srv_workarea">WorkArea</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Cage"><span data-i18n="srv_cage">Cage (Gaiola)</span></label> <span class="tag-nrc">NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Rack Setup"><span data-i18n="srv_rack">Rack (Instalação/Conversão)</span></label> <span class="tag-both">MRC+NRC</span></div>
             </div>
 
-            <h3>4.3 Infraestrutura Elétrica</h3>
+            <h3 data-i18n="sub_power">4.3 Infraestrutura Elétrica</h3>
             <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Instalações Elétricas"> Instalações Elétricas</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Circuitos Adicionais (Densidade)"> Circuitos Adicionais</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="rPDUs (Réguas)"> rPDUs (Venda ou Locação)</label> <span class="tag-both">MRC/NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Reporte Mensal Consumo"> Reporte Consumo</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Redundância Elétrica (A/B)"> Redundância (A/B)</label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Elec Install"><span data-i18n="srv_elec_inst">Instalações Elétricas</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Add Circuits"><span data-i18n="srv_circuits">Circuitos Adicionais</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="rPDUs"><span data-i18n="srv_rpdus">rPDUs (Réguas)</span></label> <span class="tag-both">MRC/NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Power Report"><span data-i18n="srv_pwr_report">Reporte Consumo</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Redundancy"><span data-i18n="srv_redundancy">Redundância (A/B)</span></label> <span class="tag-mrc">MRC</span></div>
             </div>
 
-            <h3>4.4 Serviços Técnicos (IC²)</h3>
+            <h3 data-i18n="sub_tech">4.4 Serviços Técnicos (IC²)</h3>
             <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Smart Hands (Pacotes)"> Smart Hands & Eyes</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Suporte Técnico Especializado"> Suporte Técnico (Ad Hoc)</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Monitoramento BMS"> Monitoramento BMS</label> <span class="tag-both">MRC/NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Serviço 24x7 / SLA Diferenciado"> SLA Diferenciado</label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Smart Hands"><span data-i18n="srv_smart_hands">Smart Hands & Eyes</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Tech Support"><span data-i18n="srv_tech_supp">Suporte Técnico (Ad Hoc)</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="BMS Monitor"><span data-i18n="srv_bms">Monitoramento BMS</span></label> <span class="tag-both">MRC/NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="SLA"><span data-i18n="srv_sla">SLA Diferenciado</span></label> <span class="tag-mrc">MRC</span></div>
             </div>
 
-            <h3>4.5 Segurança Física & Lógica</h3>
+            <h3 data-i18n="sub_sec">4.5 Segurança Física & Lógica</h3>
             <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Patrolling (Rondas)"> Patrolling</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="CCTV (Monitoring)"> CCTV (Monitoring)</label> <span class="tag-both">MRC/NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Sistemas de Acesso Personalizado"> Acesso Personalizado</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Acesso Biométrico"> Acesso Biométrico</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Auditorias de Acesso"> Auditorias de Acesso</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cibersegurança: Anti-DDoS"> Anti-DDoS</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cibersegurança: SOC/SIEM"> SOC / SIEM</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Cibersegurança: Firewall"> Firewall Administrado</label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Patrolling"><span data-i18n="srv_patrol">Patrolling</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="CCTV"><span data-i18n="srv_cctv">CCTV (Monitoring)</span></label> <span class="tag-both">MRC/NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Access Sys"><span data-i18n="srv_access">Acesso Personalizado</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Biometrics"><span data-i18n="srv_bio">Acesso Biométrico</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Audit"><span data-i18n="srv_audit">Auditorias de Acesso</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Anti-DDoS"><span data-i18n="srv_ddos">Anti-DDoS</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="SOC"><span data-i18n="srv_soc">SOC / SIEM</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Firewall"><span data-i18n="srv_firewall">Firewall Administrado</span></label> <span class="tag-mrc">MRC</span></div>
             </div>
 
-            <h3>4.6 Cloud & 4.7 Logística</h3>
-            <div class="services-grid">
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Private Cloud"> Private Cloud</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Hybrid Cloud"> Hybrid Cloud</label> <span class="tag-mrc">MRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Warehouse"> Warehouse / Logística</label> <span class="tag-both">MRC+NRC</span></div>
-                <div class="service-item"><label><input type="checkbox" name="serv" value="Portal de Cliente"> Portal de Cliente</label> <span class="tag-mrc">MRC</span></div>
-            </div>
+             <h3 data-i18n="sub_other">4.6 Cloud & 4.7 Logística</h3>
+             <div class="services-grid">
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Private Cloud"><span data-i18n="srv_pvt_cloud">Private Cloud</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Hybrid Cloud"><span data-i18n="srv_hyb_cloud">Hybrid Cloud</span></label> <span class="tag-mrc">MRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Warehouse"><span data-i18n="srv_warehouse">Warehouse / Logística</span></label> <span class="tag-both">MRC+NRC</span></div>
+                <div class="service-item"><label><input type="checkbox" name="serv" value="Portal"><span data-i18n="srv_portal">Portal de Cliente</span></label> <span class="tag-mrc">MRC</span></div>
+             </div>
         </div>
         
-        <input type="text" id="servObs" placeholder="Observações sobre serviços..." style="margin-top:15px">
+        <input type="text" id="servObs" data-i18n-placeholder="serv_obs_ph" style="margin-top:15px">
 
-        <h2>5. Termos Comerciais</h2>
+        <h2 data-i18n="section5_title">5. Termos Comerciais</h2>
         <div class="form-group">
-            <label>Duração do Contrato</label>
+            <label data-i18n="term_label">Duração do Contrato</label>
             <select id="contractTerm">
-                <option value="24">24 meses (5% comissão)</option>
-                <option value="36">36 meses (7% comissão)</option>
-                <option value="48">48 meses (8.5% comissão)</option>
-                <option value="60">60+ meses (10% comissão)</option>
+                <option value="24" data-i18n="opt_24m">24 meses (5% comissão)</option>
+                <option value="36" data-i18n="opt_36m">36 meses (7% comissão)</option>
+                <option value="48" data-i18n="opt_48m">48 meses (8.5% comissão)</option>
+                <option value="60" data-i18n="opt_60m">60+ meses (10% comissão)</option>
             </select>
-            <p style="font-size: 0.8rem; color: var(--ns-green); margin-top:5px;">*Contratos maiores aumentam a comissão recorrente.</p>
+            <p style="font-size: 0.8rem; color: var(--ns-green); margin-top:5px;" data-i18n="term_note">*Contratos maiores aumentam a comissão recorrente.</p>
         </div>
-        <input type="text" id="termObs" placeholder="Observações comerciais...">
+        <input type="text" id="termObs" data-i18n-placeholder="term_obs_ph">
 
-        <h2>6. Requisitos & Cronograma</h2>
+        <h2 data-i18n="section6_title">6. Requisitos & Cronograma</h2>
         <div class="form-group">
-            <label>Prazo de Implementação / Datas Críticas</label>
-            <input type="text" id="timeline" required>
+            <label data-i18n="timeline_label">Prazo de Implementação / Datas Críticas</label>
+            <input type="text" id="timeline" data-i18n-placeholder="timeline_ph" required>
         </div>
         <div class="form-group">
-            <label>Outros Requisitos Especiais</label>
+            <label data-i18n="general_obs_label">Outros Requisitos Especiais</label>
             <textarea id="generalObs" rows="3"></textarea>
         </div>
 
-        <h2>7. Responsável</h2>
+        <h2 data-i18n="section7_title">7. Responsável</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="form-group"><label>Nome</label><input type="text" id="respName" required></div>
-            <div class="form-group"><label>Cargo</label><input type="text" id="respRole" required></div>
-            <div class="form-group"><label>Empresa</label><input type="text" id="respCompany" required></div>
-            <div class="form-group"><label>E-mail</label><input type="email" id="respEmail" required></div>
-            <div class="form-group"><label>Telefone</label><input type="text" id="respPhone" required></div>
+            <div class="form-group"><label data-i18n="resp_name">Nome</label><input type="text" id="respName" required></div>
+            <div class="form-group"><label data-i18n="resp_role">Cargo</label><input type="text" id="respRole" required></div>
+            <div class="form-group"><label data-i18n="resp_company">Empresa</label><input type="text" id="respCompany" required></div>
+            <div class="form-group"><label data-i18n="resp_email">E-mail</label><input type="email" id="respEmail" required></div>
+            <div class="form-group"><label data-i18n="resp_phone">Telefone</label><input type="text" id="respPhone" required></div>
         </div>
 
-        <button type="button" class="btn-submit" onclick="generateReport()">Gerar Qualificação Completa</button>
+        <button type="button" class="btn-submit" onclick="generateReport()" data-i18n="btn_submit">Gerar Qualificação Completa</button>
     </form>
 
     <div id="output-area">
-        <h3>📋 JSON / TEXTO PARA HUBSPOT & ENGENHARIA</h3>
+        <h3 data-i18n="output_title">📋 JSON / TEXTO PARA HUBSPOT & ENGENHARIA</h3>
         <textarea id="output-text" readonly></textarea>
-        <button class="copy-btn" onclick="copyText()">Copiar Dados</button>
+        <button class="copy-btn" onclick="copyText()" data-i18n="btn_copy">Copiar Dados</button>
     </div>
 </div>
 
 <script>
-    document.getElementById('reqDate').valueAsDate = new Date();
-
-    function checkMexicoRules() {
-        const mxSite = document.querySelector('input[value="MX-Ixtlahuaca"]');
-        const alertBox = document.getElementById('mexicoAlert');
-        alertBox.style.display = (mxSite && mxSite.checked) ? 'block' : 'none';
-    }
-
-    function generateReport() {
-        // Coleta Simples
-        const val = (id) => document.getElementById(id).value;
-        const checked = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value).join(', ');
-
-        const report = `
-=== NEXTSTREAM OPPORTUNITY QUALIFICATION ===
-[Created via Partner Portal]
-
-1. PERFIL
-Parceiro: ${val('partnerName')}
-Cliente Final: ${val('endClient')}
-Data: ${val('reqDate')}
-Sites: ${checked('site')}
-Obs Local: ${val('locObs')}
-
-2. INFRAESTRUTURA
-Racks: ${val('rackQty')}
-Densidade: ${val('density')} kVA
-Setup: ${val('setupModel')}
-Obs Infra: ${val('setupObs')}
-
-3. CONECTIVIDADE
-Modelo: ${val('connModel')}
-Config: ${val('linkConfig')}
-Banda: ${val('bandwidth')}
-IPs: ${val('ipAddress')}
-Operadora: ${val('carrier')}
-Obs Conn: ${val('connObs')}
-
-4. SERVIÇOS & PRODUTOS (MRC/NRC TAGGED)
-${Array.from(document.querySelectorAll('input[name="serv"]:checked')).map(cb => '- ' + cb.value).join('\n')}
-Obs Serviços: ${val('servObs')}
-
-5. COMERCIAL
-Prazo: ${val('contractTerm')} meses
-Obs Termos: ${val('termObs')}
-
-6. CRONOGRAMA & REQUISITOS
-Timeline: ${val('timeline')}
-Geral: ${val('generalObs')}
-
-7. RESPONSÁVEL
-Nome: ${val('respName')} (${val('respRole')})
-Empresa: ${val('respCompany')}
-Contato: ${val('respEmail')} | ${val('respPhone')}
-============================================
-`;
-        const outArea = document.getElementById('output-area');
-        const outText = document.getElementById('output-text');
-        outText.value = report;
-        outArea.style.display = 'block';
-        outArea.scrollIntoView({behavior: "smooth"});
-    }
-
-    function copyText() {
-        const copyText = document.getElementById("output-text");
-        copyText.select();
-        navigator.clipboard.writeText(copyText.value);
-        alert("Dados copiados com sucesso!");
-    }
-</script>
-
-</body>
-</html>
+    const translations = {
+        pt: {
+            subtitle: "Formulário de Qualificação Integrado ao HubSpot",
+            section1_title: "1. Perfil da Oportunidade",
+            partner_label: "Parceiro / Solicitante",
+            client_label: "Cliente Final (Setor/Indústria)",
+            date_label: "Data da Solicitação",
+            location_label: "Localidade de Interesse (Sites)",
+            country_br: "🇧🇷 BRASIL",
+            country_mx: "🇲🇽 MÉXICO",
+            country_cl: "🇨🇱 CHILE",
+            country_pe: "🇵🇪 PERU",
+            country_ar: "🇦🇷 ARGENTINA",
+            loc_obs_ph: "Observações sobre localização...",
+            section2_title: "2. Infraestrutura (Missão Crítica)",
+            alert_mx: "<strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.",
+            rack_label: "Qtd. Racks",
+            rack_ph: "Padrão: 1/2 Rack (22U)",
+            density_label: "Densidade (kVA Real)",
+            density_ph: "Padrão: 1 kVA",
+            setup_label: "Modelo Setup (CAPEX)",
+            opt_upfront: "Upfront (Pagamento Integral)",
+            opt_diluted: "Diluído na Mensalidade (OpEx)",
+            setup_obs_ph: "Observações sobre setup...",
+            section3_title: "3. Conectividade & IP",
+            conn_model_label: "Modelo de Conexão",
+            opt_select: "Selecione...",
+            opt_darkfiber: "Fibra Apagada",
+            opt_l2l: "L2L (Lan to Lan)",
+            opt_dia: "Internet Dedicada",
+            opt_other: "Outro",
+            link_config_label: "Configuração Link",
+            opt_single: "Singelo",
+            opt_redundant: "Redundante",
+            bandwidth_label: "Banda Internet",
+            bandwidth_ph: "Ex: 100 Mbps ou 10 Gbps",
+            ip_label: "Endereçamento IPv4",
+            opt_none: "Nenhum",
+            carrier_label: "Operadora de Preferência",
+            opt_carrier_neutral: "Sem preferência (Carrier Neutral)",
+            conn_obs_ph: "Observações sobre conectividade...",
+            section4_title: "4. Portfólio de Serviços (HubSpot Mapping)",
+            services_subtitle: "Selecione os adicionais. Tags indicam tipo de receita: MRC (Mensal) | NRC (One-time)",
+            sub_conn: "4.1 Conectividade",
+            srv_cc_int: "Cross Connect Interno",
+            srv_cc_ext: "Cross Connect Externo",
+            srv_fiber: "Optical Fiber Backbone",
+            srv_onnet: "On-net con carriers",
+            srv_peering: "Acesso IX / Peering",
+            srv_cloud_conn: "Cloud Connect",
+            sub_space: "4.2 Espaço & Infraestrutura",
+            srv_space_rent: "Renta de Espaço",
+            srv_workarea: "WorkArea",
+            srv_cage: "Cage (Gaiola)",
+            srv_rack: "Rack (Instalação/Conversão)",
+            sub_power: "4.3 Infraestrutura Elétrica",
+            srv_elec_inst: "Instalações Elétricas",
+            srv_circuits: "Circuitos Adicionais",
+            srv_rpdus: "rPDUs (Réguas)",
+            srv_pwr_report: "Reporte Consumo",
+            srv_redundancy: "Redundância (A/B)",
+            sub_tech: "4.4 Serviços Técnicos (IC²)",
+            srv_smart_hands: "Smart Hands & Eyes",
+            srv_tech_supp: "Suporte Técnico (Ad Hoc)",
+            srv_bms: "Monitoramento BMS",
+            srv_sla: "SLA Diferenciado",
+            sub_sec: "4.5 Segurança Física & Lógica",
+            srv_patrol: "Patrolling",
+            srv_cctv: "CCTV (Monitoring)",
+            srv_access: "Acesso Personalizado",
+            srv_bio: "Acesso Biométrico",
+            srv_audit: "Auditorias de Acesso",
+            srv_ddos: "Anti-DDoS",
+            srv_soc: "SOC / SIEM",
+            srv_firewall: "Firewall Administrado",
+            sub_other: "4.6 Cloud & 4.7 Logística",
+            srv_pvt_cloud: "Private Cloud",
+            srv_hyb_cloud: "Hybrid Cloud",
+            srv_warehouse: "Warehouse / Logística",
+            srv_portal: "Portal de Cliente",
+            serv_obs_ph: "Observações sobre serviços...",
+            section5_title: "5. Termos Comerciais",
+            term_label: "Duração do Contrato",
+            opt_24m: "24 meses (5% comissão)",
+            opt_36m: "36 meses (7% comissão)",
+            opt_48m: "48 meses (8.5% comissão)",
+            opt_60m: "60+ meses (10% comissão)",
+            term_note: "*Contratos maiores aumentam a comissão recorrente.",
+            term_obs_ph: "Observações comerciais...",
+            section6_title: "6. Requisitos & Cronograma",
+            timeline_label: "Prazo de Implementação / Datas Críticas",
+            timeline_ph: "Ex: Q3 2026",
+            general_obs_label: "Outros Requisitos Especiais",
+            section7_title: "7. Responsável",
+            resp_name: "Nome",
+            resp_role: "Cargo",
+            resp_company: "Empresa",
+            resp_email: "E-mail",
+            resp_phone: "Telefone",
+            btn_submit: "Gerar Qualificação Completa",
+            output_title: "📋 JSON / TEXTO PARA HUBSPOT & ENGENHARIA",
+            btn_copy: "Copiar Dados"
+        },
+        en: {
+            subtitle: "HubSpot Integrated Deal Registration Form",
+            section1_title: "1. Opportunity Profile",
+            partner_label: "Partner / Requester",
+            client_label: "End Client (Sector/Industry)",
+            date_label: "Request Date",
+            location_label: "Target Location (Sites)",
+            country_br: "🇧🇷 BRAZIL",
+            country_mx: "🇲🇽 MEXICO",
+            country_cl: "🇨🇱 CHILE",
+            country_pe: "🇵🇪 PERU",
+            country_ar: "🇦🇷 ARGENTINA",
+            loc_obs_ph: "Location notes...",
+            section2_title: "2. Infrastructure (Mission Critical)",
+            alert_mx: "<strong>⚠️ MEXICO RESTRICTION:</strong> Min Rack 45U | Min Density: 2 kVA | Max: 6 kVA.",
+            rack_label: "Qty Racks",
+            rack_ph: "Standard: 1/2 Rack (22U)",
+            density_label: "Density (Real kVA)",
+            density_ph: "Standard: 1 kVA",
+            setup_label: "Setup Model (CAPEX)",
+            opt_upfront: "Upfront (Full Payment)",
+            opt_diluted: "Diluted in Monthly Fee (OpEx)",
+            setup_obs_ph: "Setup notes...",
+            section3_title: "3. Connectivity & IP",
+            conn_model_label: "Connection Model",
+            opt_select: "Select...",
+            opt_darkfiber: "Dark Fiber",
+            opt_l2
