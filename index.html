@@ -8,14 +8,15 @@
     
     <style>
         :root {
-            --ns-dark: #0a192f;      /* Fundo Principal */
-            --ns-header: #050f1e;    /* Fundo Header */
-            --ns-card: #112240;      /* Fundo Card */
+            --ns-dark: #0a192f;      /* Fundo da Página (Deep Navy) */
+            /* CORRIGIDO: Header mais claro para contraste */
+            --ns-header: #172a45;    /* Fundo Header (Lighter Navy) */
+            --ns-card: #112240;      /* Fundo do Formulário */
             --ns-green: #00ff9d;     /* Acento Marca */
             --ns-light: #e6f1ff;     /* Texto Claro */
             --ns-grey: #8892b0;      /* Texto Secundário */
             --ns-hover: #233554;     /* Campos Input */
-            --ns-border: #1e3a5f;    /* Bordas Suaves */
+            --ns-border: #1e3a5f;    /* Bordas */
         }
 
         body {
@@ -24,17 +25,17 @@
             color: var(--ns-light);
             line-height: 1.6;
             margin: 0;
-            padding: 0; /* Reset para o Header encostar na borda */
+            padding: 0;
         }
 
-        /* HEADER ESTILO SITE OFICIAL */
+        /* HEADER ATUALIZADO */
         header {
-            background-color: var(--ns-header);
+            background-color: var(--ns-header); /* Cor nova mais visível */
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2); /* Linha verde sutil */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -42,7 +43,7 @@
         }
 
         .logo-container img {
-            height: 35px; /* Tamanho ajustado ao padrão web */
+            height: 35px;
             display: block;
         }
 
@@ -52,12 +53,12 @@
         }
 
         .lang-btn {
-            background: transparent;
-            color: var(--ns-grey);
+            background: rgba(255,255,255,0.05); /* Leve fundo para botão */
+            color: var(--ns-light);
             border: 1px solid var(--ns-grey);
             padding: 6px 12px;
             cursor: pointer;
-            border-radius: 20px; /* Arredondado moderno */
+            border-radius: 20px;
             font-weight: 600;
             font-size: 0.75rem;
             transition: all 0.3s ease;
@@ -68,7 +69,7 @@
             background: var(--ns-green);
             color: var(--ns-dark);
             border-color: var(--ns-green);
-            box-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
         }
 
         /* CONTAINER PRINCIPAL */
@@ -84,18 +85,17 @@
             background: var(--ns-card);
             padding: 50px;
             border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             border: 1px solid var(--ns-border);
         }
 
-        /* TIPOGRAFIA E ELEMENTOS */
+        /* TIPOGRAFIA */
         h1 { 
             font-size: 1.8rem; 
             color: var(--ns-green); 
             text-transform: uppercase; 
             letter-spacing: 1px; 
             margin-bottom: 5px; 
-            border-bottom: none;
         }
         
         .subtitle {
@@ -135,7 +135,7 @@
 
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ns-green); }
 
-        /* GRIDS E CARDS */
+        /* GRIDS */
         .location-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -227,7 +227,7 @@
             <a href="https://nextstream.com" target="_blank">
                <img src="https://nextstream.com/wp-content/themes/nextstream/assets/images/logo-nextstream-branca.svg" 
                     alt="NextStream" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/200x50/0a192f/00ff9d?text=NEXTSTREAM&font=montserrat';">
+                    onerror="this.onerror=null; this.src='https://placehold.co/200x50/172a45/00ff9d?text=NEXTSTREAM&font=montserrat';">
             </a>
         </div>
         <div class="lang-selector">
@@ -497,7 +497,7 @@
         const translations = {
             pt: {
                 subtitle: "Formulário de Qualificação Integrado ao HubSpot",
-                section1_title: "1. [cite_start]Perfil da Oportunidad [cite: 76]",
+                section1_title: "1. Perfil da Oportunidade",
                 partner_label: "Parceiro / Solicitante",
                 client_label: "Cliente Final (Setor/Indústria)",
                 date_label: "Data da Solicitação",
@@ -508,7 +508,7 @@
                 country_pe: "🇵🇪 PERU",
                 country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Observações sobre localização...",
-                section2_title: "2. [cite_start]Infraestrutura (Missão Crítica) [cite: 98]",
+                section2_title: "2. Infraestrutura (Missão Crítica)",
                 alert_mx: "<strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.",
                 rack_label: "Qtd. Racks",
                 rack_ph: "Padrão: 1/2 Rack (22U)",
@@ -518,7 +518,7 @@
                 opt_upfront: "Upfront (Pagamento Integral)",
                 opt_diluted: "Diluído na Mensalidade (OpEx)",
                 setup_obs_ph: "Observações sobre setup...",
-                section3_title: "3. [cite_start]Conectividade & IP [cite: 113]",
+                section3_title: "3. Conectividade & IP",
                 conn_model_label: "Modelo de Conexão",
                 opt_select: "Selecione...",
                 opt_darkfiber: "Fibra Apagada",
@@ -535,7 +535,7 @@
                 carrier_label: "Operadora de Preferência",
                 opt_carrier_neutral: "Sem preferência (Carrier Neutral)",
                 conn_obs_ph: "Observações sobre conectividade...",
-                section4_title: "4. [cite_start]Portfólio de Serviços (HubSpot Mapping) [cite: 149]",
+                section4_title: "4. Portfólio de Serviços (HubSpot Mapping)",
                 services_subtitle: "Selecione os adicionais. Tags indicam tipo de receita: MRC (Mensal) | NRC (One-time)",
                 sub_conn: "4.1 Conectividade",
                 srv_cc_int: "Cross Connect Interno",
@@ -575,7 +575,7 @@
                 srv_warehouse: "Warehouse / Logística",
                 srv_portal: "Portal de Cliente",
                 serv_obs_ph: "Observações sobre serviços...",
-                section5_title: "5. [cite_start]Termos Comerciais [cite: 210]",
+                section5_title: "5. Termos Comerciais",
                 term_label: "Duração do Contrato",
                 opt_24m: "24 meses (5% comissão)",
                 opt_36m: "36 meses (7% comissão)",
