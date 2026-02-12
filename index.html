@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextStream | Qualificação de Oportunidade</title>
+    <style>
+        :root {
+            --ns-dark: #0a192f; /* Dark Navy - Tech/Security */
+            --ns-green: #00ff9d; /* Serena/Sustainability Vibe */
+            --ns-light: #e6f1ff;
+            --ns-grey: #8892b0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--ns-dark);
+            color: var(--ns-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 4px solid var(--ns-green);
+        }
+
+        h1, h2 {
+            color: var(--ns-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 10px; }
+        h2 { font-size: 1.2rem; margin-top: 30px; border-bottom: 1px solid var(--ns-grey); padding-bottom: 10px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #ccd6f6; }
+        
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            background: #233554;
+            border: 1px solid #112240;
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input:focus { outline: 2px solid var(--ns-green); }
+
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .checkbox-item { display: flex; align-items: center; background: #172a45; padding: 10px; border-radius: 4px; }
+        .checkbox-item input { margin-right: 10px; }
+
+        .alert {
+            background-color: rgba(255, 99, 71, 0.1);
+            border-left: 4px solid tomato;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            display: none; /* Hidden by default */
+        }
+
+        button {
+            background-color: var(--ns-green);
+            color: var(--ns-dark);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        button:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        #output {
+            margin-top: 30px;
+            background: #000;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="border: 2px solid var(--ns-green); display: inline-block; padding: 10px 20px;">NEXTSTREAM</h1>
+        <p>Alliance Partner Registration Portal</p>
+    </div>
+
+    <h1>Formulário de Qualificação de Oportunidade</h1>
+    <p>Use este formulário para submeter oportunidades para análise técnica e comercial.</p>
+
+    <form id="opportunityForm">
+        <h2>1. Perfil da Oportunidade</h2>
+        <div class="form-group">
+            <label>Nome do Parceiro/Solicitante:</label>
+            <input type="text" id="partnerName" required placeholder="Ex: Kyndryl, Capgemini, Parceiro Local">
+        </div>
+        <div class="form-group">
+            <label>Cliente Final (Setor/Indústria):</label>
+            <input type="text" id="clientIndustry" required>
+        </div>
+
+        <div class="form-group">
+            <label>Localidade de Interesse (Site Principal): [cite: 8-23]</label>
+            <select id="location" onchange="updateRegionalLogic()" required>
+                <option value="">Selecione...</option>
+                <option value="Brasil">Brasil (Tamboré/Curitiba)</option>
+                <option value="Mexico">México (Ixtlahuaca)</option>
+                <option value="Chile">Chile (Paine/Apoquindo)</option>
+                <option value="Peru">Peru (Lince/Monterico)</option>
+                <option value="Argentina">Argentina (Barracas/Velez)</option>
+            </select>
+        </div>
+
+        <h2>2. Infraestrutura e Potência (Missão Crítica)</h2>
+        <div id="mexicoAlert" class="alert">
+            <strong>Atenção Regional (México):</strong> Densidade máxima sugerida de 6 KVA e Racks de 45U padrão. [cite: 34, 170]
+        </div>
+
+        <div class="form-group">
+            <label>Quantidade de Racks:</label>
+            <input type="number" id="rackCount" min="1" required>
+            <small id="rackHelp" style="color: var(--ns-grey)">Padrão: 1/2 Rack de 22U</small>
+        </div>
+
+        <div class="form-group">
+            <label>Densidade de Energia por Rack (KVA Real):</label>
+            <input type="number" id="powerDensity" min="1" max="20" step="0.5" required>
+            <small id="powerHelp" style="color: var(--ns-grey)">Suportamos até 20 KVAs sob demanda (BR).</small>
+        </div>
+
+        <h2>3. Conectividade (Carrier Neutral)</h2>
+        <div class="form-group">
+            <label>Operadora de Preferência:</label>
+            <select id="carrierSelect">
+                <option value="Agnostico">Sem preferência (Carrier Neutral)</option>
+                </select>
+        </div>
+        
+        <div class="checkbox-group">
+             <div class="checkbox-item"><label><input type="checkbox" name="services" value="Cross Connect"> Cross Connect</label></div>
+             <div class="checkbox-item"><label><input type="checkbox" name="services" value="Cloud Connect"> Cloud Connect (AWS/Azure)</label></div>
+        </div>
+
+        <h2>4. Termos Comerciais [cite: 137-143]</h2>
+        <div class="form-group">
+            <label>Duração do Contrato:</label>
+            <select id="contractTerm">
+                <option value="24">24 meses (5% comissão)</option>
+                <option value="36">36 meses (7% comissão)</option>
+                <option value="48">48 meses (8.5% comissão)</option>
+                <option value="60">60+ meses (10% comissão)</option>
+            </select>
+            <small style="color: var(--ns-green)">Dica: Contratos longos maximizam a comissão recorrente.</small>
+        </div>
+
+        <button type="button" onclick="generateSummary()">Gerar Qualificação</button>
+    </form>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    // Dados de Operadoras [cite: 54-74]
+    const carriers = {
+        'Brasil': ['BRFIBRA', 'ALGAR', 'TELEFONICA VIVO', 'LEVEL 3 (CIRION)', 'CLARO/EMBRATEL', 'MEGATELECOM'],
+        'Mexico': ['Axtel', 'Flo Networks', 'Vívaro', 'Cogent', 'Telmex (Em breve)'],
+        'General': ['Outro / A definir']
+    };
+
+    function updateRegionalLogic() {
+        const loc = document.getElementById('location').value;
+        const rackHelp = document.getElementById('rackHelp');
+        const powerHelp = document.getElementById('powerHelp');
+        const alertBox = document.getElementById('mexicoAlert');
+        const carrierSelect = document.getElementById('carrierSelect');
+
+        // Limpar operadoras
+        carrierSelect.innerHTML = '<option value="Agnostico">Sem preferência (Carrier Neutral)</option>';
+
+        let regionCarriers = carriers['General'];
+        
+        if (loc === 'Mexico') {
+            // Regras México [cite: 170]
+            alertBox.style.display = 'block';
+            rackHelp.innerText = 'Recomendado: Rack 45U (Padrão Regional)';
+            powerHelp.innerText = 'Limite Regional: Até 6 KVA ';
+            regionCarriers = carriers['Mexico'];
+        } else if (loc === 'Brasil') {
+            alertBox.style.display = 'none';
+            rackHelp.innerText = 'Padrão: 1/2 Rack 22U ou Full Rack';
+            powerHelp.innerText = 'Suportamos até 20 KVAs sob demanda [cite: 33]';
+            regionCarriers = carriers['Brasil'];
+        } else {
+            alertBox.style.display = 'none';
+        }
+
+        // Popular operadoras
+        regionCarriers.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.innerText = c;
+            carrierSelect.appendChild(opt);
+        });
+    }
+
+    function generateSummary() {
+        const partner = document.getElementById('partnerName').value;
+        const client = document.getElementById('clientIndustry').value;
+        const loc = document.getElementById('location').value;
+        const racks = document.getElementById('rackCount').value;
+        const power = document.getElementById('powerDensity').value;
+        const carrier = document.getElementById('carrierSelect').value;
+        const term = document.getElementById('contractTerm').value;
+        
+        // Coleta checkboxes
+        const services = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value).join(', ');
+
+        const summary = `
+OPORTUNIDADE NEXTSTREAM - QUALIFICAÇÃO
+--------------------------------------
+Parceiro: ${partner}
+Cliente Final: ${client}
+Data: ${new Date().toLocaleDateString()}
+
+INFRAESTRUTURA
+Site: ${loc}
+Racks: ${racks}
+Densidade: ${power} KVA
+Operadora: ${carrier}
+
+SERVIÇOS ADICIONAIS
+${services || 'Nenhum selecionado'}
+
+TERMOS
+Prazo: ${term} meses
+
+--------------------------------------
+Copie este texto e envie para alliances@nextstream.com
+        `;
+
+        const out = document.getElementById('output');
+        out.style.display = 'block';
+        out.innerText = summary;
+        
+        // Auto scroll to bottom
+        out.scrollIntoView({behavior: "smooth"});
+    }
+</script>
+
+</body>
+</html>
