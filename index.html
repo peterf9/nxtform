@@ -96,7 +96,7 @@
 
         .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
         .location-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--ns-border); }
-        .country-title { color: var(--ns-green); font-weight: bold; margin-bottom: 10px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; font-size: 1.2rem; }
+        .country-title { color: var(--ns-green); font-weight: bold; margin-bottom: 10px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; font-size: 1.1rem; }
 
         .services-wrapper { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px solid var(--ns-border); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
@@ -201,26 +201,26 @@
                 <label data-i18n="location_label" style="margin-top: 20px;">Localidade de Interesse (Sites)</label>
                 <div class="location-grid">
                     <div class="location-card">
-                        <span class="country-title">🇧🇷</span>
+                        <span class="country-title" data-i18n="country_br">🇧🇷 BRASIL</span>
                         <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Tambore"> Tamboré</label>
                         <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Curitiba"> Curitiba</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title">🇲🇽</span>
+                        <span class="country-title" data-i18n="country_mx">🇲🇽 MÉXICO</span>
                         <label class="service-item"><input type="checkbox" name="site" value="🇲🇽 Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title">🇨🇱</span>
+                        <span class="country-title" data-i18n="country_cl">🇨🇱 CHILE</span>
                         <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Paine"> Paine</label>
                         <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Apoquindo"> Apoquindo</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title">🇵🇪</span>
+                        <span class="country-title" data-i18n="country_pe">🇵🇪 PERU</span>
                         <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Lince"> Lince</label>
                         <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Monterico"> Monterico</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title">🇦🇷</span>
+                        <span class="country-title" data-i18n="country_ar">🇦🇷 ARGENTINA</span>
                         <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Barracas"> Barracas</label>
                         <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Velez"> Velez</label>
                     </div>
@@ -438,6 +438,11 @@
                 client_label: "Cliente Final (Setor/Indústria)",
                 date_label: "Data da Solicitação",
                 location_label: "Localidade de Interesse (Sites)",
+                country_br: "🇧🇷 BRASIL",
+                country_mx: "🇲🇽 MÉXICO",
+                country_cl: "🇨🇱 CHILE",
+                country_pe: "🇵🇪 PERU",
+                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Observações sobre localização...",
                 section2_title: "2. Infraestrutura (Missão Crítica)",
                 alert_mx: "<strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.",
@@ -535,6 +540,11 @@
                 client_label: "End Client (Sector/Industry)",
                 date_label: "Request Date",
                 location_label: "Target Location (Sites)",
+                country_br: "🇧🇷 BRAZIL",
+                country_mx: "🇲🇽 MEXICO",
+                country_cl: "🇨🇱 CHILE",
+                country_pe: "🇵🇪 PERU",
+                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Location notes...",
                 section2_title: "2. Infrastructure (Mission Critical)",
                 alert_mx: "<strong>⚠️ MEXICO RESTRICTION:</strong> Min Rack 45U | Min Density: 2 kVA | Max: 6 kVA.",
@@ -632,6 +642,11 @@
                 client_label: "Cliente Final (Sector/Industria)",
                 date_label: "Fecha de Solicitud",
                 location_label: "Localidad de Interés (Sitios)",
+                country_br: "🇧🇷 BRASIL",
+                country_mx: "🇲🇽 MÉXICO",
+                country_cl: "🇨🇱 CHILE",
+                country_pe: "🇵🇪 PERÚ",
+                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Observaciones de ubicación...",
                 section2_title: "2. Infraestructura (Misión Crítica)",
                 alert_mx: "<strong>⚠️ RESTRICCIÓN MÉXICO:</strong> Rack Mín 45U | Densidad Mín: 2 kVA | Máx: 6 kVA.",
@@ -674,7 +689,7 @@
                 srv_workarea: "WorkArea",
                 srv_cage: "Cage (Jaula)",
                 srv_rack: "Rack (Instalación/Conversión)",
-                sub_power: "4.3 Infraestructura Eléctrica",
+                sub_power: "4.3 Infraestrutura Eléctrica",
                 srv_elec_inst: "Instalaciones Eléctricas",
                 srv_circuits: "Circuitos Adicionales",
                 srv_rpdus: "rPDUs (Regletas)",
@@ -748,12 +763,10 @@
                 }
             });
 
-            // Toggle Buttons
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
         }
 
-        // Logic Functions
         document.getElementById('reqDate').valueAsDate = new Date();
 
         function checkMexicoRules() {
@@ -763,7 +776,6 @@
         }
 
         function generateReport() {
-            // Coleta
             const val = (id) => document.getElementById(id).value;
             const checked = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value).join(', ');
             
