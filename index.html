@@ -8,15 +8,14 @@
     
     <style>
         :root {
-            --ns-dark: #0a192f;      /* Fundo da Página (Deep Navy) */
-            /* CORRIGIDO: Header mais claro para contraste */
-            --ns-header: #172a45;    /* Fundo Header (Lighter Navy) */
-            --ns-card: #112240;      /* Fundo do Formulário */
-            --ns-green: #00ff9d;     /* Acento Marca */
-            --ns-light: #e6f1ff;     /* Texto Claro */
-            --ns-grey: #8892b0;      /* Texto Secundário */
-            --ns-hover: #233554;     /* Campos Input */
-            --ns-border: #1e3a5f;    /* Bordas */
+            --ns-dark: #0a192f;
+            --ns-header: #172a45;
+            --ns-card: #112240;
+            --ns-green: #00ff9d;
+            --ns-light: #e6f1ff;
+            --ns-grey: #8892b0;
+            --ns-hover: #233554;
+            --ns-border: #1e3a5f;
         }
 
         body {
@@ -28,32 +27,24 @@
             padding: 0;
         }
 
-        /* HEADER ATUALIZADO */
         header {
-            background-color: var(--ns-header); /* Cor nova mais visível */
+            background-color: var(--ns-header);
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2); /* Linha verde sutil */
+            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
-        .logo-container img {
-            height: 35px;
-            display: block;
-        }
+        .logo-container img { height: 35px; display: block; }
 
-        .lang-selector {
-            display: flex;
-            gap: 10px;
-        }
-
+        .lang-selector { display: flex; gap: 10px; }
         .lang-btn {
-            background: rgba(255,255,255,0.05); /* Leve fundo para botão */
+            background: rgba(255,255,255,0.05);
             color: var(--ns-light);
             border: 1px solid var(--ns-grey);
             padding: 6px 12px;
@@ -64,7 +55,6 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
         }
-
         .lang-btn:hover, .lang-btn.active {
             background: var(--ns-green);
             color: var(--ns-dark);
@@ -72,13 +62,7 @@
             box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
         }
 
-        /* CONTAINER PRINCIPAL */
-        .main-content {
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-
+        .main-content { padding: 40px 20px; display: flex; justify-content: center; }
         .container {
             width: 100%;
             max-width: 900px;
@@ -89,35 +73,11 @@
             border: 1px solid var(--ns-border);
         }
 
-        /* TIPOGRAFIA */
-        h1 { 
-            font-size: 1.8rem; 
-            color: var(--ns-green); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin-bottom: 5px; 
-        }
-        
-        .subtitle {
-            color: var(--ns-grey);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--ns-border);
-            padding-bottom: 20px;
-        }
-
-        h2 { 
-            font-size: 1.2rem; 
-            color: var(--ns-light); 
-            margin-top: 40px; 
-            border-left: 4px solid var(--ns-green); 
-            padding-left: 15px;
-            margin-bottom: 20px;
-        }
-
+        h1 { font-size: 1.8rem; color: var(--ns-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .subtitle { color: var(--ns-grey); font-size: 0.95rem; margin-bottom: 30px; border-bottom: 1px solid var(--ns-border); padding-bottom: 20px; }
+        h2 { font-size: 1.2rem; color: var(--ns-light); margin-top: 40px; border-left: 4px solid var(--ns-green); padding-left: 15px; margin-bottom: 20px; }
         h3 { font-size: 1rem; color: var(--ns-green); margin-top: 25px; margin-bottom: 10px; }
 
-        /* FORMULÁRIO */
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-weight: 600; color: #ccd6f6; font-size: 0.9rem; }
         
@@ -132,30 +92,11 @@
             font-size: 1rem;
             transition: border-color 0.3s;
         }
-
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ns-green); }
 
-        /* GRIDS */
-        .location-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .location-card {
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--ns-border);
-        }
-        .country-title {
-            color: var(--ns-green);
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 5px;
-        }
+        .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
+        .location-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--ns-border); }
+        .country-title { color: var(--ns-green); font-weight: bold; margin-bottom: 10px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; font-size: 1.2rem; }
 
         .services-wrapper { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px solid var(--ns-border); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
@@ -172,12 +113,10 @@
         .service-item:hover { border-color: var(--ns-green); transform: translateX(3px); }
         .service-item input { margin-right: 12px; width: auto; }
         
-        /* TAGS */
         .tag-mrc { color: #4dabf7; font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
         .tag-nrc { color: #ffab00; font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
         .tag-both { color: var(--ns-green); font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
 
-        /* ALERTA */
         .alert {
             background-color: rgba(255, 99, 71, 0.1);
             border-left: 4px solid #ff6b6b;
@@ -188,7 +127,6 @@
             border-radius: 0 4px 4px 0;
         }
 
-        /* BOTÃO */
         .btn-submit {
             background-color: var(--ns-green);
             color: var(--ns-dark);
@@ -206,13 +144,11 @@
         }
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2); }
 
-        /* SAÍDA */
         #output-area { margin-top: 40px; display: none; }
         #output-text { width: 100%; height: 300px; background: #050f1e; color: #00ff9d; font-family: 'Consolas', monospace; padding: 20px; border: 1px solid var(--ns-border); border-radius: 6px; }
         .copy-btn { background: var(--ns-grey); color: var(--ns-dark); padding: 12px 25px; border: none; cursor: pointer; margin-top: 15px; font-weight: bold; border-radius: 4px; }
         .copy-btn:hover { background: #fff; }
 
-        /* MOBILE */
         @media (max-width: 600px) {
             header { padding: 15px 20px; }
             .container { padding: 20px; }
@@ -265,28 +201,28 @@
                 <label data-i18n="location_label" style="margin-top: 20px;">Localidade de Interesse (Sites)</label>
                 <div class="location-grid">
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_br">🇧🇷 BRASIL</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="BR-Tambore"> Tamboré</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="BR-Curitiba"> Curitiba</label>
+                        <span class="country-title">🇧🇷</span>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Tambore"> Tamboré</label>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Curitiba"> Curitiba</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_mx">🇲🇽 MÉXICO</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="MX-Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
+                        <span class="country-title">🇲🇽</span>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇲🇽 Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_cl">🇨🇱 CHILE</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="CL-Paine"> Paine</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="CL-Apoquindo"> Apoquindo</label>
+                        <span class="country-title">🇨🇱</span>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Paine"> Paine</label>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Apoquindo"> Apoquindo</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_pe">🇵🇪 PERU</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="PE-Lince"> Lince</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="PE-Monterico"> Monterico</label>
+                        <span class="country-title">🇵🇪</span>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Lince"> Lince</label>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Monterico"> Monterico</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_ar">🇦🇷 ARGENTINA</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="AR-Barracas"> Barracas</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="AR-Velez"> Velez</label>
+                        <span class="country-title">🇦🇷</span>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Barracas"> Barracas</label>
+                        <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Velez"> Velez</label>
                     </div>
                 </div>
                 <div class="form-group" style="margin-top:15px;">
@@ -502,18 +438,13 @@
                 client_label: "Cliente Final (Setor/Indústria)",
                 date_label: "Data da Solicitação",
                 location_label: "Localidade de Interesse (Sites)",
-                country_br: "🇧🇷 BRASIL",
-                country_mx: "🇲🇽 MÉXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERU",
-                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Observações sobre localização...",
                 section2_title: "2. Infraestrutura (Missão Crítica)",
                 alert_mx: "<strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.",
                 rack_label: "Qtd. Racks",
                 rack_ph: "Padrão: 1/2 Rack (22U)",
-                density_label: "Densidade (kVA Real)",
-                density_ph: "Padrão: 1 kVA",
+                density_label: "Densidade (kVA Nominal)",
+                density_ph: "Ex: 2 kVA (Nominal)",
                 setup_label: "Modelo Setup (CAPEX)",
                 opt_upfront: "Upfront (Pagamento Integral)",
                 opt_diluted: "Diluído na Mensalidade (OpEx)",
@@ -604,18 +535,13 @@
                 client_label: "End Client (Sector/Industry)",
                 date_label: "Request Date",
                 location_label: "Target Location (Sites)",
-                country_br: "🇧🇷 BRAZIL",
-                country_mx: "🇲🇽 MEXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERU",
-                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Location notes...",
                 section2_title: "2. Infrastructure (Mission Critical)",
                 alert_mx: "<strong>⚠️ MEXICO RESTRICTION:</strong> Min Rack 45U | Min Density: 2 kVA | Max: 6 kVA.",
                 rack_label: "Qty Racks",
                 rack_ph: "Standard: 1/2 Rack (22U)",
-                density_label: "Density (Real kVA)",
-                density_ph: "Standard: 1 kVA",
+                density_label: "Density (Nominal kVA)",
+                density_ph: "Ex: 2 kVA (Nominal)",
                 setup_label: "Setup Model (CAPEX)",
                 opt_upfront: "Upfront (Full Payment)",
                 opt_diluted: "Diluted in Monthly Fee (OpEx)",
@@ -706,18 +632,13 @@
                 client_label: "Cliente Final (Sector/Industria)",
                 date_label: "Fecha de Solicitud",
                 location_label: "Localidad de Interés (Sitios)",
-                country_br: "🇧🇷 BRASIL",
-                country_mx: "🇲🇽 MÉXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERÚ",
-                country_ar: "🇦🇷 ARGENTINA",
                 loc_obs_ph: "Observaciones de ubicación...",
                 section2_title: "2. Infraestructura (Misión Crítica)",
                 alert_mx: "<strong>⚠️ RESTRICCIÓN MÉXICO:</strong> Rack Mín 45U | Densidad Mín: 2 kVA | Máx: 6 kVA.",
                 rack_label: "Cant. Racks",
                 rack_ph: "Estándar: 1/2 Rack (22U)",
-                density_label: "Densidad (kVA Real)",
-                density_ph: "Estándar: 1 kVA",
+                density_label: "Densidad (kVA Nominal)",
+                density_ph: "Ej: 2 kVA (Nominal)",
                 setup_label: "Modelo de Configuración (CAPEX)",
                 opt_upfront: "Upfront (Pago Anticipado)",
                 opt_diluted: "Diluido en Mensualidad (OpEx)",
@@ -836,7 +757,7 @@
         document.getElementById('reqDate').valueAsDate = new Date();
 
         function checkMexicoRules() {
-            const mxSite = document.querySelector('input[value="MX-Ixtlahuaca"]');
+            const mxSite = document.querySelector('input[value="🇲🇽 Ixtlahuaca"]');
             const alertBox = document.getElementById('mexicoAlert');
             alertBox.style.display = (mxSite && mxSite.checked) ? 'block' : 'none';
         }
@@ -859,7 +780,7 @@ Loc Obs: ${val('locObs')}
 
 2. INFRASTRUCTURE
 Racks: ${val('rackQty')}
-Density: ${val('density')} kVA
+Density: ${val('density')} kVA (Nominal)
 Setup: ${val('setupModel')}
 Infra Obs: ${val('setupObs')}
 
