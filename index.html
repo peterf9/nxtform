@@ -8,151 +8,118 @@
     
     <style>
         :root {
-            --ns-dark: #0a192f;
-            --ns-header: #172a45;
-            --ns-card: #112240;
-            --ns-green: #00ff9d;
-            --ns-light: #e6f1ff;
-            --ns-grey: #8892b0;
-            --ns-hover: #233554;
-            --ns-border: #1e3a5f;
+            --ns-navy: #0a192f;
+            --ns-blue: #0056b3;
+            --ns-green: #00d084;
+            --ns-bg: #f4f6f8;
+            --ns-card: #ffffff;
+            --ns-text: #334e68;
+            --ns-border: #dbe2e8;
+            --tag-mrc: #0056b3;
+            --tag-nrc: #d97706;
+            --tag-both: #059669;
         }
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--ns-dark);
-            color: var(--ns-light);
+            background-color: var(--ns-bg);
+            color: var(--ns-text);
             line-height: 1.6;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: var(--ns-header);
-            padding: 15px 40px;
+            background-color: var(--ns-card);
+            padding: 12px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+            border-bottom: 3px solid var(--ns-green);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .logo-container img { height: 35px; display: block; }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        /* AJUSTE: Redução de 20% no tamanho do logo (de 40px para 32px) */
+        .logo-container img { height: 32px; }
+        .slogan { 
+            font-size: 0.75rem; color: var(--ns-navy); font-weight: 700; text-transform: uppercase; 
+            letter-spacing: 1px; border-left: 1px solid var(--ns-border); padding-left: 15px; margin-left: 5px;
+        }
 
-        .lang-selector { display: flex; gap: 10px; }
+        .lang-selector { display: flex; gap: 8px; }
         .lang-btn {
-            background: rgba(255,255,255,0.05);
-            color: var(--ns-light);
-            border: 1px solid var(--ns-grey);
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+            background: transparent; color: var(--ns-text); border: 1px solid var(--ns-border);
+            padding: 6px 14px; cursor: pointer; border-radius: 20px; font-weight: 600; font-size: 0.75rem;
         }
-        .lang-btn:hover, .lang-btn.active {
-            background: var(--ns-green);
-            color: var(--ns-dark);
-            border-color: var(--ns-green);
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
-        }
+        .lang-btn.active { background: var(--ns-navy); color: white; border-color: var(--ns-navy); }
 
         .main-content { padding: 40px 20px; display: flex; justify-content: center; }
         .container {
-            width: 100%;
-            max-width: 900px;
-            background: var(--ns-card);
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            border: 1px solid var(--ns-border);
+            width: 100%; max-width: 950px; background: var(--ns-card); padding: 50px;
+            border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); border: 1px solid var(--ns-border);
         }
 
-        h1 { font-size: 1.8rem; color: var(--ns-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .subtitle { color: var(--ns-grey); font-size: 0.95rem; margin-bottom: 30px; border-bottom: 1px solid var(--ns-border); padding-bottom: 20px; }
-        h2 { font-size: 1.2rem; color: var(--ns-light); margin-top: 40px; border-left: 4px solid var(--ns-green); padding-left: 15px; margin-bottom: 20px; }
-        h3 { font-size: 1rem; color: var(--ns-green); margin-top: 25px; margin-bottom: 10px; }
+        h1 { font-size: 1.8rem; color: var(--ns-navy); text-transform: uppercase; text-align: center; font-weight: 800; margin-bottom: 5px; }
+        .subtitle { color: var(--ns-text); opacity: 0.8; font-size: 1rem; margin-bottom: 40px; border-bottom: 1px solid var(--ns-border); padding-bottom: 20px; text-align: center; }
+        
+        h2 { 
+            font-size: 1.1rem; color: var(--ns-navy); margin-top: 40px; border-left: 5px solid var(--ns-green); 
+            padding: 8px 15px; background: #f8f9fa; text-transform: uppercase; font-weight: 700;
+        }
+
+        h3 { font-size: 0.9rem; color: var(--ns-blue); margin-top: 25px; margin-bottom: 15px; font-weight: 700; border-bottom: 1px solid #edf2f7; padding-bottom: 5px; text-transform: uppercase;}
 
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: #ccd6f6; font-size: 0.9rem; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--ns-navy); font-size: 0.85rem; }
         
         input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background: var(--ns-hover);
-            border: 1px solid var(--ns-border);
-            color: white;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            width: 100%; padding: 12px; background: #ffffff; border: 1px solid #cbd5e0;
+            color: var(--ns-text); border-radius: 4px; box-sizing: border-box; font-size: 0.95rem;
         }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ns-green); }
+        input:focus, select:focus { outline: none; border-color: var(--ns-blue); box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1); }
 
-        .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }
-        .location-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--ns-border); }
-        .country-title { color: var(--ns-green); font-weight: bold; margin-bottom: 10px; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; font-size: 1.1rem; }
+        .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 15px; }
+        .location-card { background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid var(--ns-border); }
+        .country-title { color: var(--ns-navy); font-weight: 800; margin-bottom: 10px; display: block; font-size: 1rem; border-bottom: 1px solid #cbd5e0; padding-bottom: 4px; }
+        .site-option { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; margin-bottom: 6px; cursor: pointer; }
+        .site-option input { width: auto; margin: 0; }
 
-        .services-wrapper { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px solid var(--ns-border); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+        .services-wrapper { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid var(--ns-border); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
         .service-item {
-            background: var(--ns-hover);
-            padding: 10px 14px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            border: 1px solid transparent;
-            transition: all 0.2s;
+            background: white; padding: 8px 12px; border-radius: 4px; display: flex; align-items: center;
+            font-size: 0.75rem; border: 1px solid var(--ns-border); transition: all 0.2s;
         }
-        .service-item:hover { border-color: var(--ns-green); transform: translateX(3px); }
-        .service-item input { margin-right: 12px; width: auto; }
+        .service-item:hover { border-color: var(--ns-green); transform: translateX(2px); }
+        .service-item input { margin-right: 10px; width: auto; cursor: pointer; }
         
-        .tag-mrc { color: #4dabf7; font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
-        .tag-nrc { color: #ffab00; font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
-        .tag-both { color: var(--ns-green); font-weight: 700; font-size: 0.7rem; margin-left: auto; text-transform: uppercase; }
+        .tag { font-weight: 800; font-size: 0.55rem; margin-left: auto; text-transform: uppercase; padding: 2px 5px; border-radius: 3px; white-space: nowrap;}
+        .tag-mrc { color: var(--tag-mrc); background: #ebf4ff; }
+        .tag-nrc { color: var(--tag-nrc); background: #fffbeb; }
+        .tag-both { color: var(--tag-both); background: #ecfdf5; }
 
-        .alert {
-            background-color: rgba(255, 99, 71, 0.1);
-            border-left: 4px solid #ff6b6b;
-            padding: 15px;
-            margin: 20px 0;
-            color: #ffcccc;
-            display: none;
-            border-radius: 0 4px 4px 0;
-        }
+        .alert { background-color: #fff5f5; border-left: 5px solid #f56565; padding: 15px; margin: 20px 0; color: #c53030; display: none; font-size: 0.9rem; }
 
         .btn-submit {
-            background-color: var(--ns-green);
-            color: var(--ns-dark);
-            padding: 18px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--ns-navy); color: white; padding: 18px 30px; border: none; border-radius: 6px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer; width: 100%; margin-top: 40px; text-transform: uppercase;
         }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2); }
+        .btn-submit:hover { background-color: #1a365d; transform: translateY(-2px); }
 
-        #output-area { margin-top: 40px; display: none; }
-        #output-text { width: 100%; height: 300px; background: #050f1e; color: #00ff9d; font-family: 'Consolas', monospace; padding: 20px; border: 1px solid var(--ns-border); border-radius: 6px; }
-        .copy-btn { background: var(--ns-grey); color: var(--ns-dark); padding: 12px 25px; border: none; cursor: pointer; margin-top: 15px; font-weight: bold; border-radius: 4px; }
-        .copy-btn:hover { background: #fff; }
+        #output-area { margin-top: 40px; display: none; background: #f1f5f9; padding: 25px; border-radius: 8px; border: 1px solid var(--ns-border); }
+        #output-text { width: 100%; height: 400px; background: white; color: var(--ns-navy); font-family: 'Consolas', monospace; padding: 20px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.85rem; }
+        
+        .action-buttons { display: flex; gap: 12px; margin-top: 20px; }
+        .action-btn { flex: 1; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .copy-btn { background: #e2e8f0; color: var(--ns-navy); border: none; }
+        .email-btn { background: var(--ns-green); color: var(--ns-navy); border: none; }
 
         @media (max-width: 600px) {
-            header { padding: 15px 20px; }
-            .container { padding: 20px; }
-            .logo-container img { height: 28px; }
+            header { padding: 10px 20px; } .container { padding: 20px; }
         }
     </style>
 </head>
@@ -161,10 +128,9 @@
     <header>
         <div class="logo-container">
             <a href="https://nextstream.com" target="_blank">
-               <img src="https://nextstream.com/wp-content/themes/nextstream/assets/images/logo-nextstream-branca.svg" 
-                    alt="NextStream" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/200x50/172a45/00ff9d?text=NEXTSTREAM&font=montserrat';">
+               <img src="https://nextstream.com/wp-content/uploads/2025/06/Nextstream-azul.svg" alt="NextStream">
             </a>
+            <span class="slogan">Made for What's Next</span>
         </div>
         <div class="lang-selector">
             <button class="lang-btn active" onclick="setLanguage('pt')">PT</button>
@@ -175,15 +141,12 @@
 
     <div class="main-content">
         <div class="container">
-            <div style="text-align: center;">
-                <h1>PARTNER ALLIANCE PORTAL</h1>
-                <p class="subtitle" data-i18n="subtitle">HubSpot Integrated Deal Registration Form</p>
-            </div>
+            <h1>PARTNER ALLIANCE PORTAL</h1>
+            <p class="subtitle" data-i18n="subtitle">Formulário de Qualificação Integrado ao HubSpot</p>
 
             <form id="dealForm">
-                
                 <h2 data-i18n="section1_title">1. Perfil da Oportunidade</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div class="form-group">
                         <label data-i18n="partner_label">Parceiro / Solicitante</label>
                         <input type="text" id="partnerName" required>
@@ -198,233 +161,166 @@
                     <input type="date" id="reqDate" required>
                 </div>
 
-                <label data-i18n="location_label" style="margin-top: 20px;">Localidade de Interesse (Sites)</label>
+                <label data-i18n="location_label">Localidade de Interesse (Sites)</label>
                 <div class="location-grid">
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_br">🇧🇷 BRASIL</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Tambore"> Tamboré</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇧🇷 Curitiba"> Curitiba</label>
+                        <span class="country-title">🇧🇷 BRASIL</span>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇧🇷 Tambore"> Tamboré</label>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇧🇷 Curitiba"> Curitiba</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_mx">🇲🇽 MÉXICO</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇲🇽 Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
+                        <span class="country-title">🇲🇽 MÉXICO</span>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇲🇽 Ixtlahuaca" onchange="checkMexicoRules()"> Ixtlahuaca</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_cl">🇨🇱 CHILE</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Paine"> Paine</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇨🇱 Apoquindo"> Apoquindo</label>
+                        <span class="country-title">🇨🇱 CHILE</span>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇨🇱 Paine"> Paine</label>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇨🇱 Apoquindo"> Apoquindo</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_pe">🇵🇪 PERU</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Lince"> Lince</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇵🇪 Monterico"> Monterico</label>
+                        <span class="country-title">🇵🇪 PERU</span>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇵🇪 Lince"> Lince</label>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇵🇪 Monterico"> Monterico</label>
                     </div>
                     <div class="location-card">
-                        <span class="country-title" data-i18n="country_ar">🇦🇷 ARGENTINA</span>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Barracas"> Barracas</label>
-                        <label class="service-item"><input type="checkbox" name="site" value="🇦🇷 Velez"> Velez</label>
+                        <span class="country-title">🇦🇷 ARGENTINA</span>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇦🇷 Barracas"> Barracas</label>
+                        <label class="site-option"><input type="checkbox" name="site" value="🇦🇷 Velez"> Velez</label>
                     </div>
-                </div>
-                <div class="form-group" style="margin-top:15px;">
-                    <input type="text" id="locObs" data-i18n-placeholder="loc_obs_ph">
                 </div>
 
                 <h2 data-i18n="section2_title">2. Infraestrutura (Missão Crítica)</h2>
-                
                 <div id="mexicoAlert" class="alert" data-i18n="alert_mx">
                     <strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.
                 </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                     <div class="form-group">
                         <label data-i18n="rack_label">Qtd. Racks</label>
-                        <input type="number" id="rackQty" data-i18n-placeholder="rack_ph" required>
+                        <input type="number" id="rackQty" required>
                     </div>
                     <div class="form-group">
                         <label data-i18n="density_label">Densidade (kVA Nominal)</label>
-                        <input type="number" id="density" data-i18n-placeholder="density_ph" step="0.5" required>
+                        <input type="number" id="density" step="0.5" required>
                     </div>
                      <div class="form-group">
                         <label data-i18n="setup_label">Modelo Setup (CAPEX)</label>
                         <select id="setupModel">
-                            <option value="Upfront" data-i18n="opt_upfront">Upfront (Pagamento Integral)</option>
-                            <option value="Diluido" data-i18n="opt_diluted">Diluído na Mensalidade (OpEx)</option>
+                            <option value="Upfront" data-i18n="opt_upfront">Upfront (Integral)</option>
+                            <option value="Diluido" data-i18n="opt_diluted">Diluído (OpEx)</option>
                         </select>
                     </div>
                 </div>
-                <input type="text" id="setupObs" data-i18n-placeholder="setup_obs_ph">
 
                 <h2 data-i18n="section3_title">3. Conectividade & IP</h2>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                     <div class="form-group">
                         <label data-i18n="conn_model_label">Modelo de Conexão</label>
                         <select id="connModel">
                             <option value="" data-i18n="opt_select">Selecione...</option>
-                            <option value="Fibra Apagada" data-i18n="opt_darkfiber">Fibra Apagada</option>
-                            <option value="L2L" data-i18n="opt_l2l">L2L (Lan to Lan)</option>
+                            <option value="Fibra Apagada">Fibra Apagada</option>
                             <option value="MPLS">MPLS</option>
-                            <option value="Internet Dedicada" data-i18n="opt_dia">Internet Dedicada</option>
-                            <option value="Outro" data-i18n="opt_other">Outro</option>
+                            <option value="Internet Dedicada">Internet Dedicada</option>
+                            <option value="L2L">L2L</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label data-i18n="link_config_label">Configuração Link</label>
-                        <select id="linkConfig">
-                            <option value="Singelo" data-i18n="opt_single">Singelo</option>
-                            <option value="Redundante" data-i18n="opt_redundant">Redundante</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                     <div class="form-group">
                         <label data-i18n="bandwidth_label">Banda Internet</label>
-                        <input type="text" id="bandwidth" data-i18n-placeholder="bandwidth_ph">
+                        <input type="text" id="bandwidth" placeholder="Ex: 1 Gbps">
                     </div>
                     <div class="form-group">
-                        <label data-i18n="ip_label">Endereçamento IPv4</label>
+                        <label data-i18n="ip_label">IPv4</label>
                         <select id="ipAddress">
                             <option value="Nenhum" data-i18n="opt_none">Nenhum</option>
                             <option value="/29">/29 (5 IPs)</option>
                             <option value="/28">/28 (13 IPs)</option>
-                            <option value="Outro" data-i18n="opt_other">Outro</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label data-i18n="carrier_label">Operadora de Preferência</label>
-                    <select id="carrier">
-                        <option value="Agnostico" data-i18n="opt_carrier_neutral">Sem preferência (Carrier Neutral)</option>
-                        <optgroup label="🇧🇷 Brasil">
-                            <option value="BRFIBRA">BRFIBRA</option>
-                            <option value="ALGAR">ALGAR</option>
-                            <option value="T&TEL">T&TEL</option>
-                            <option value="WCS">WCS</option>
-                            <option value="TELEFONICA VIVO">TELEFONICA VIVO</option>
-                            <option value="VOGUEL">VOGUEL</option>
-                            <option value="LEVEL 3 (CIRION)">LEVEL 3 (CIRION)</option>
-                            <option value="CLARO/EMBRATEL">CLARO/EMBRATEL</option>
-                            <option value="OI">OI</option>
-                            <option value="MEGATELECOM">MEGATELECOM</option>
-                            <option value="AVATO">AVATO</option>
-                            <option value="UFINET">UFINET</option>
-                            <option value="NOVVACORRE">NOVVACORRE</option>
-                        </optgroup>
-                        <optgroup label="🇲🇽 México">
-                            <option value="Axtel">Axtel</option>
-                            <option value="Flo Networks">Flo Networks</option>
-                            <option value="Vívaro">Vívaro</option>
-                            <option value="Cogent">Cogent</option>
-                            <option value="Orbith">Orbith</option>
-                            <option value="Telmex">Telmex (Em breve)</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <input type="text" id="connObs" data-i18n-placeholder="conn_obs_ph">
-
                 <h2 data-i18n="section4_title">4. Portfólio de Serviços (HubSpot Mapping)</h2>
-                <p style="font-size: 0.9rem; color: var(--ns-grey); margin-bottom: 20px;" data-i18n="services_subtitle">Selecione os adicionais. Tags indicam tipo de receita: MRC (Mensal) | NRC (One-time)</p>
-
                 <div class="services-wrapper">
-                    <h3 data-i18n="sub_conn">4.1 Conectividade</h3>
+                    <h3 data-i18n="sub_41">4.1 Conectividade</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Int)"><span data-i18n="srv_cc_int">Cross Connect Interno</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Ext)"><span data-i18n="srv_cc_ext">Cross Connect Externo</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Optical Fiber"><span data-i18n="srv_fiber">Optical Fiber Backbone</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="On-net Carriers"><span data-i18n="srv_onnet">On-net con carriers</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Peering"><span data-i18n="srv_peering">Acesso IX / Peering</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cloud Connect"><span data-i18n="srv_cloud_conn">Cloud Connect</span></label> <span class="tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Int)"><span data-i18n="srv_41_1">Cross Connect Interno</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cross Connect (Ext)"><span data-i18n="srv_41_2">Cross Connect Externo</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Optical Fiber Backbone"><span data-i18n="srv_41_3">Optical Fiber Backbone</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="On-net con carriers"><span data-i18n="srv_41_4">On-net con carriers</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="IX Access / Peering"><span data-i18n="srv_41_5">IX Access / Peering</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cloud Connect (AWS/Azure)"><span data-i18n="srv_41_6">Cloud Connect</span></label> <span class="tag tag-mrc">MRC</span></div>
                     </div>
 
-                    <h3 data-i18n="sub_space">4.2 Espaço & Infraestrutura</h3>
+                    <h3 data-i18n="sub_42">4.2 Espaço & Infraestrutura</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Space Rent"><span data-i18n="srv_space_rent">Renta de Espaço</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="WorkArea"><span data-i18n="srv_workarea">WorkArea</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cage"><span data-i18n="srv_cage">Cage (Gaiola)</span></label> <span class="tag-nrc">NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Rack Setup"><span data-i18n="srv_rack">Rack (Instalação/Conversão)</span></label> <span class="tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Space Rent (Land/Storage)"><span data-i18n="srv_42_1">Aluguel de Espaço</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="WorkArea"><span data-i18n="srv_42_2">WorkArea</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Cage (Gaiola)"><span data-i18n="srv_42_3">Cage (Gaiola)</span></label> <span class="tag tag-nrc">NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Rack Install/Convert"><span data-i18n="srv_42_4">Instalação/Conversão de Rack</span></label> <span class="tag tag-both">MRC+NRC</span></div>
                     </div>
 
-                    <h3 data-i18n="sub_power">4.3 Infraestrutura Elétrica</h3>
+                    <h3 data-i18n="sub_43">4.3 Infraestrutura Elétrica</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Elec Install"><span data-i18n="srv_elec_inst">Instalações Elétricas</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Add Circuits"><span data-i18n="srv_circuits">Circuitos Adicionais</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="rPDUs"><span data-i18n="srv_rpdus">rPDUs (Réguas)</span></label> <span class="tag-both">MRC/NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Power Report"><span data-i18n="srv_pwr_report">Reporte Consumo</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Redundancy"><span data-i18n="srv_redundancy">Redundância (A/B)</span></label> <span class="tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Electrical Install"><span data-i18n="srv_43_1">Instalações Elétricas</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Additional Circuits"><span data-i18n="srv_43_2">Circuitos Adicionais</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="rPDUs (Power Strips)"><span data-i18n="srv_43_3">rPDUs (Réguas)</span></label> <span class="tag tag-both">MRC/NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Monthly Consumption Report"><span data-i18n="srv_43_4">Relatório de Consumo</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Electrical Redundancy (A/B)"><span data-i18n="srv_43_5">Redundância (A/B)</span></label> <span class="tag tag-mrc">MRC</span></div>
                     </div>
 
-                    <h3 data-i18n="sub_tech">4.4 Serviços Técnicos (IC²)</h3>
+                    <h3 data-i18n="sub_44">4.4 Serviços Técnicos (IC²)</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Smart Hands"><span data-i18n="srv_smart_hands">Smart Hands & Eyes</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Tech Support"><span data-i18n="srv_tech_supp">Suporte Técnico (Ad Hoc)</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="BMS Monitor"><span data-i18n="srv_bms">Monitoramento BMS</span></label> <span class="tag-both">MRC/NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="SLA"><span data-i18n="srv_sla">SLA Diferenciado</span></label> <span class="tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Smart Hands & Eyes"><span data-i18n="srv_44_1">Smart Hands & Eyes</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Specialized Tech Support"><span data-i18n="srv_44_2">Suporte Especializado</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="BMS Monitoring"><span data-i18n="srv_44_3">Monitoramento BMS</span></label> <span class="tag tag-both">MRC/NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="24x7 Service / Custom SLA"><span data-i18n="srv_44_4">Serviço 24x7 / SLA Custom</span></label> <span class="tag tag-mrc">MRC</span></div>
                     </div>
 
-                    <h3 data-i18n="sub_sec">4.5 Segurança Física & Lógica</h3>
+                    <h3 data-i18n="sub_45">4.5 Segurança Física & Lógica</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Patrolling"><span data-i18n="srv_patrol">Patrolling</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="CCTV"><span data-i18n="srv_cctv">CCTV (Monitoring)</span></label> <span class="tag-both">MRC/NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Access Sys"><span data-i18n="srv_access">Acesso Personalizado</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Biometrics"><span data-i18n="srv_bio">Acesso Biométrico</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Audit"><span data-i18n="srv_audit">Auditorias de Acesso</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Anti-DDoS"><span data-i18n="srv_ddos">Anti-DDoS</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="SOC"><span data-i18n="srv_soc">SOC / SIEM</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Firewall"><span data-i18n="srv_firewall">Firewall Administrado</span></label> <span class="tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Patrolling"><span data-i18n="srv_45_1">Patrolling</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="CCTV Monitoring"><span data-i18n="srv_45_2">CCTV Monitoring</span></label> <span class="tag tag-both">MRC/NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Custom Access Systems"><span data-i18n="srv_45_3">Acesso Customizado</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Biometric Access"><span data-i18n="srv_45_4">Acesso Biométrico</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Anti-DDoS"><span data-i18n="srv_45_5">Anti-DDoS</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="SOC / SIEM"><span data-i18n="srv_45_6">SOC / SIEM</span></label> <span class="tag tag-mrc">MRC</span></div>
                     </div>
 
-                    <h3 data-i18n="sub_other">4.6 Cloud & 4.7 Logística</h3>
+                    <h3 data-i18n="sub_46">4.6 Cloud & 4.7 Logística</h3>
                     <div class="services-grid">
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Private Cloud"><span data-i18n="srv_pvt_cloud">Private Cloud</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Hybrid Cloud"><span data-i18n="srv_hyb_cloud">Hybrid Cloud</span></label> <span class="tag-mrc">MRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Warehouse"><span data-i18n="srv_warehouse">Warehouse / Logística</span></label> <span class="tag-both">MRC+NRC</span></div>
-                        <div class="service-item"><label><input type="checkbox" name="serv" value="Portal"><span data-i18n="srv_portal">Portal de Cliente</span></label> <span class="tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Private/Hybrid Cloud"><span data-i18n="srv_46_1">Private/Hybrid Cloud</span></label> <span class="tag tag-mrc">MRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Warehouse"><span data-i18n="srv_47_1">Warehouse (Armazém)</span></label> <span class="tag tag-both">MRC+NRC</span></div>
+                        <div class="service-item"><label><input type="checkbox" name="serv" value="Customer Portal"><span data-i18n="srv_47_2">Portal do Cliente</span></label> <span class="tag tag-mrc">MRC</span></div>
                     </div>
                 </div>
-                
-                <input type="text" id="servObs" data-i18n-placeholder="serv_obs_ph" style="margin-top:15px">
 
                 <h2 data-i18n="section5_title">5. Termos Comerciais</h2>
                 <div class="form-group">
                     <label data-i18n="term_label">Duração do Contrato</label>
                     <select id="contractTerm">
-                        <option value="24" data-i18n="opt_24m">24 meses (5% comissão)</option>
-                        <option value="36" data-i18n="opt_36m">36 meses (7% comissão)</option>
-                        <option value="48" data-i18n="opt_48m">48 meses (8.5% comissão)</option>
-                        <option value="60" data-i18n="opt_60m">60+ meses (10% comissão)</option>
+                        <option value="24" data-i18n="opt_24m">24 meses (5%)</option>
+                        <option value="36" data-i18n="opt_36m">36 meses (7%)</option>
+                        <option value="48" data-i18n="opt_48m">48 meses (8.5%)</option>
+                        <option value="60" data-i18n="opt_60m">60+ meses (10%)</option>
                     </select>
-                    <p style="font-size: 0.85rem; color: var(--ns-green); margin-top:5px;" data-i18n="term_note">*Contratos maiores aumentam a comissão recorrente.</p>
-                </div>
-                <input type="text" id="termObs" data-i18n-placeholder="term_obs_ph">
-
-                <h2 data-i18n="section6_title">6. Requisitos & Cronograma</h2>
-                <div class="form-group">
-                    <label data-i18n="timeline_label">Prazo de Implementação / Datas Críticas</label>
-                    <input type="text" id="timeline" data-i18n-placeholder="timeline_ph" required>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="general_obs_label">Outros Requisitos Especiais</label>
-                    <textarea id="generalObs" rows="3"></textarea>
                 </div>
 
-                <h2 data-i18n="section7_title">7. Responsável</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <h2 data-i18n="section7_title">6. Responsável</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                     <div class="form-group"><label data-i18n="resp_name">Nome</label><input type="text" id="respName" required></div>
-                    <div class="form-group"><label data-i18n="resp_role">Cargo</label><input type="text" id="respRole" required></div>
-                    <div class="form-group"><label data-i18n="resp_company">Empresa</label><input type="text" id="respCompany" required></div>
                     <div class="form-group"><label data-i18n="resp_email">E-mail</label><input type="email" id="respEmail" required></div>
-                    <div class="form-group"><label data-i18n="resp_phone">Telefone</label><input type="text" id="respPhone" required></div>
                 </div>
 
                 <button type="button" class="btn-submit" onclick="generateReport()" data-i18n="btn_submit">Gerar Qualificação Completa</button>
             </form>
 
             <div id="output-area">
-                <h3 data-i18n="output_title">📋 JSON / TEXTO PARA HUBSPOT & ENGENHARIA</h3>
+                <div style="margin-bottom:15px; padding:12px; background:#e0f2fe; border-radius:6px; color:#0369a1; font-size:0.9rem; font-weight:bold;">
+                    📧 <span data-i18n="send_instruction">Enviar para: pfischer@nextstream.com</span>
+                </div>
                 <textarea id="output-text" readonly></textarea>
-                <button class="copy-btn" onclick="copyText()" data-i18n="btn_copy">Copiar Dados</button>
+                <div class="action-buttons">
+                    <button class="action-btn copy-btn" onclick="copyText()">📋 <span data-i18n="btn_copy">Copiar Texto</span></button>
+                    <a id="emailBtn" href="#" class="action-btn email-btn">📧 <span data-i18n="btn_email">Abrir E-mail</span></a>
+                </div>
             </div>
         </div>
     </div>
@@ -432,410 +328,94 @@
     <script>
         const translations = {
             pt: {
-                subtitle: "Formulário de Qualificação Integrado ao HubSpot",
+                subtitle: "Qualificação de Oportunidade - HubSpot Integrated",
                 section1_title: "1. Perfil da Oportunidade",
-                partner_label: "Parceiro / Solicitante",
-                client_label: "Cliente Final (Setor/Indústria)",
-                date_label: "Data da Solicitação",
-                location_label: "Localidade de Interesse (Sites)",
-                country_br: "🇧🇷 BRASIL",
-                country_mx: "🇲🇽 MÉXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERU",
-                country_ar: "🇦🇷 ARGENTINA",
-                loc_obs_ph: "Observações sobre localização...",
-                section2_title: "2. Infraestrutura (Missão Crítica)",
-                alert_mx: "<strong>⚠️ RESTRIÇÃO MÉXICO:</strong> Rack Mínimo de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.",
-                rack_label: "Qtd. Racks",
-                rack_ph: "Padrão: 1/2 Rack (22U)",
-                density_label: "Densidade (kVA Nominal)",
-                density_ph: "Ex: 2 kVA (Nominal)",
-                setup_label: "Modelo Setup (CAPEX)",
-                opt_upfront: "Upfront (Pagamento Integral)",
-                opt_diluted: "Diluído na Mensalidade (OpEx)",
-                setup_obs_ph: "Observações sobre setup...",
-                section3_title: "3. Conectividade & IP",
-                conn_model_label: "Modelo de Conexão",
-                opt_select: "Selecione...",
-                opt_darkfiber: "Fibra Apagada",
-                opt_l2l: "L2L (Lan to Lan)",
-                opt_dia: "Internet Dedicada",
-                opt_other: "Outro",
-                link_config_label: "Configuração Link",
-                opt_single: "Singelo",
-                opt_redundant: "Redundante",
-                bandwidth_label: "Banda Internet",
-                bandwidth_ph: "Ex: 100 Mbps ou 10 Gbps",
-                ip_label: "Endereçamento IPv4",
-                opt_none: "Nenhum",
-                carrier_label: "Operadora de Preferência",
-                opt_carrier_neutral: "Sem preferência (Carrier Neutral)",
-                conn_obs_ph: "Observações sobre conectividade...",
+                partner_label: "Parceiro / Solicitante", client_label: "Cliente Final", date_label: "Data", location_label: "Sites de Interesse",
+                section2_title: "2. Infraestrutura", alert_mx: "<strong>⚠️ MÉXICO:</strong> Rack 45U | Min: 2 kVA | Máx: 6 kVA.",
+                rack_label: "Qtd. Racks", density_label: "Densidade (kVA Nominal)", setup_label: "Setup",
+                opt_upfront: "Upfront (CAPEX)", opt_diluted: "Diluído (OpEx)",
+                section3_title: "3. Conectividade & IP", conn_model_label: "Modelo", ip_label: "IPv4", opt_none: "Nenhum",
                 section4_title: "4. Portfólio de Serviços (HubSpot Mapping)",
-                services_subtitle: "Selecione os adicionais. Tags indicam tipo de receita: MRC (Mensal) | NRC (One-time)",
-                sub_conn: "4.1 Conectividade",
-                srv_cc_int: "Cross Connect Interno",
-                srv_cc_ext: "Cross Connect Externo",
-                srv_fiber: "Optical Fiber Backbone",
-                srv_onnet: "On-net con carriers",
-                srv_peering: "Acesso IX / Peering",
-                srv_cloud_conn: "Cloud Connect",
-                sub_space: "4.2 Espaço & Infraestrutura",
-                srv_space_rent: "Renta de Espaço",
-                srv_workarea: "WorkArea",
-                srv_cage: "Cage (Gaiola)",
-                srv_rack: "Rack (Instalação/Conversão)",
-                sub_power: "4.3 Infraestrutura Elétrica",
-                srv_elec_inst: "Instalações Elétricas",
-                srv_circuits: "Circuitos Adicionais",
-                srv_rpdus: "rPDUs (Réguas)",
-                srv_pwr_report: "Reporte Consumo",
-                srv_redundancy: "Redundância (A/B)",
-                sub_tech: "4.4 Serviços Técnicos (IC²)",
-                srv_smart_hands: "Smart Hands & Eyes",
-                srv_tech_supp: "Suporte Técnico (Ad Hoc)",
-                srv_bms: "Monitoramento BMS",
-                srv_sla: "SLA Diferenciado",
-                sub_sec: "4.5 Segurança Física & Lógica",
-                srv_patrol: "Patrolling",
-                srv_cctv: "CCTV (Monitoring)",
-                srv_access: "Acesso Personalizado",
-                srv_bio: "Acesso Biométrico",
-                srv_audit: "Auditorias de Acesso",
-                srv_ddos: "Anti-DDoS",
-                srv_soc: "SOC / SIEM",
-                srv_firewall: "Firewall Administrado",
-                sub_other: "4.6 Cloud & 4.7 Logística",
-                srv_pvt_cloud: "Private Cloud",
-                srv_hyb_cloud: "Hybrid Cloud",
-                srv_warehouse: "Warehouse / Logística",
-                srv_portal: "Portal de Cliente",
-                serv_obs_ph: "Observações sobre serviços...",
-                section5_title: "5. Termos Comerciais",
-                term_label: "Duração do Contrato",
-                opt_24m: "24 meses (5% comissão)",
-                opt_36m: "36 meses (7% comissão)",
-                opt_48m: "48 meses (8.5% comissão)",
-                opt_60m: "60+ meses (10% comissão)",
-                term_note: "*Contratos maiores aumentam a comissão recorrente.",
-                term_obs_ph: "Observações comerciais...",
-                section6_title: "6. Requisitos & Cronograma",
-                timeline_label: "Prazo de Implementação / Datas Críticas",
-                timeline_ph: "Ex: Q3 2026",
-                general_obs_label: "Outros Requisitos Especiais",
-                section7_title: "7. Responsável",
-                resp_name: "Nome",
-                resp_role: "Cargo",
-                resp_company: "Empresa",
-                resp_email: "E-mail",
-                resp_phone: "Telefone",
-                btn_submit: "Gerar Qualificação Completa",
-                output_title: "📋 JSON / TEXTO PARA HUBSPOT & ENGENHARIA",
-                btn_copy: "Copiar Dados"
+                sub_41: "4.1 Conectividade", srv_41_1: "Cross Connect Interno", srv_41_2: "Cross Connect Externo", srv_41_3: "Optical Fiber Backbone", srv_41_4: "On-net con carriers", srv_41_5: "IX Access / Peering", srv_41_6: "Cloud Connect",
+                sub_42: "4.2 Espaço & Infraestrutura", srv_42_1: "Aluguel de Espaço", srv_42_2: "WorkArea", srv_42_3: "Cage (Gaiola)", srv_42_4: "Rack Instalação/Conversão",
+                sub_43: "4.3 Infraestrutura Elétrica", srv_43_1: "Instalações Elétricas", srv_43_2: "Circuitos Adicionais", srv_43_3: "rPDUs (Réguas)", srv_43_4: "Relatório de Consumo", srv_43_5: "Redundância (A/B)",
+                sub_44: "4.4 Serviços Técnicos (IC²)", srv_44_1: "Smart Hands & Eyes", srv_44_2: "Suporte Especializado", srv_44_3: "Monitoramento BMS", srv_44_4: "Serviço 24x7 / SLA Custom",
+                sub_45: "4.5 Segurança Física & Lógica", srv_45_1: "Patrolling", srv_45_2: "CCTV Monitoring", srv_45_3: "Acesso Customizado", srv_45_4: "Acesso Biométrico", srv_45_5: "Anti-DDoS", srv_45_6: "SOC / SIEM",
+                sub_46: "4.6 Cloud & 4.7 Logística", srv_46_1: "Private/Hybrid Cloud", srv_47_1: "Warehouse (Armazém)", srv_47_2: "Portal do Cliente",
+                section5_title: "5. Termos Comerciais", section7_title: "6. Responsável",
+                btn_submit: "Gerar Qualificação", send_instruction: "Enviar para: pfischer@nextstream.com",
+                btn_copy: "Copiar Texto", btn_email: "Abrir E-mail para Enviar"
             },
             en: {
-                subtitle: "HubSpot Integrated Deal Registration Form",
+                subtitle: "Opportunity Qualification - HubSpot Integrated",
                 section1_title: "1. Opportunity Profile",
-                partner_label: "Partner / Requester",
-                client_label: "End Client (Sector/Industry)",
-                date_label: "Request Date",
-                location_label: "Target Location (Sites)",
-                country_br: "🇧🇷 BRAZIL",
-                country_mx: "🇲🇽 MEXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERU",
-                country_ar: "🇦🇷 ARGENTINA",
-                loc_obs_ph: "Location notes...",
-                section2_title: "2. Infrastructure (Mission Critical)",
-                alert_mx: "<strong>⚠️ MEXICO RESTRICTION:</strong> Min Rack 45U | Min Density: 2 kVA | Max: 6 kVA.",
-                rack_label: "Qty Racks",
-                rack_ph: "Standard: 1/2 Rack (22U)",
-                density_label: "Density (Nominal kVA)",
-                density_ph: "Ex: 2 kVA (Nominal)",
-                setup_label: "Setup Model (CAPEX)",
-                opt_upfront: "Upfront (Full Payment)",
-                opt_diluted: "Diluted in Monthly Fee (OpEx)",
-                setup_obs_ph: "Setup notes...",
-                section3_title: "3. Connectivity & IP",
-                conn_model_label: "Connection Model",
-                opt_select: "Select...",
-                opt_darkfiber: "Dark Fiber",
-                opt_l2l: "L2L (Lan to Lan)",
-                opt_dia: "Dedicated Internet",
-                opt_other: "Other",
-                link_config_label: "Link Config",
-                opt_single: "Single",
-                opt_redundant: "Redundant",
-                bandwidth_label: "Internet Bandwidth",
-                bandwidth_ph: "Ex: 100 Mbps or 10 Gbps",
-                ip_label: "IPv4 Addressing",
-                opt_none: "None",
-                carrier_label: "Preferred Carrier",
-                opt_carrier_neutral: "No preference (Carrier Neutral)",
-                conn_obs_ph: "Connectivity notes...",
+                partner_label: "Partner / Requester", client_label: "End Client", date_label: "Date", location_label: "Target Sites",
+                section2_title: "2. Infrastructure", alert_mx: "<strong>⚠️ MEXICO:</strong> Rack 45U | Min: 2 kVA | Max: 6 kVA.",
+                rack_label: "Rack Qty", density_label: "Density (Nominal kVA)", setup_label: "Setup",
+                opt_upfront: "Upfront (Full)", opt_diluted: "Diluted (OpEx)",
+                section3_title: "3. Connectivity & IP", conn_model_label: "Model", ip_label: "IPv4", opt_none: "None",
                 section4_title: "4. Services Portfolio (HubSpot Mapping)",
-                services_subtitle: "Select add-ons. Tags indicate revenue type: MRC (Monthly) | NRC (One-time)",
-                sub_conn: "4.1 Connectivity",
-                srv_cc_int: "Cross Connect Internal",
-                srv_cc_ext: "Cross Connect External",
-                srv_fiber: "Optical Fiber Backbone",
-                srv_onnet: "On-net con carriers",
-                srv_peering: "IX Access / Peering",
-                srv_cloud_conn: "Cloud Connect",
-                sub_space: "4.2 Space & Infrastructure",
-                srv_space_rent: "Space Rental",
-                srv_workarea: "WorkArea",
-                srv_cage: "Cage",
-                srv_rack: "Rack (Install/Conversion)",
-                sub_power: "4.3 Electrical Infrastructure",
-                srv_elec_inst: "Electrical Installation",
-                srv_circuits: "Additional Circuits",
-                srv_rpdus: "rPDUs (Power Strips)",
-                srv_pwr_report: "Consumption Report",
-                srv_redundancy: "Redundancy (A/B)",
-                sub_tech: "4.4 Technical Services (IC²)",
-                srv_smart_hands: "Smart Hands & Eyes",
-                srv_tech_supp: "Tech Support (Ad Hoc)",
-                srv_bms: "BMS Monitoring",
-                srv_sla: "Differentiated SLA",
-                sub_sec: "4.5 Physical & Logical Security",
-                srv_patrol: "Patrolling",
-                srv_cctv: "CCTV (Monitoring)",
-                srv_access: "Custom Access System",
-                srv_bio: "Biometric Access",
-                srv_audit: "Access Audits",
-                srv_ddos: "Anti-DDoS",
-                srv_soc: "SOC / SIEM",
-                srv_firewall: "Managed Firewall",
-                sub_other: "4.6 Cloud & 4.7 Logistics",
-                srv_pvt_cloud: "Private Cloud",
-                srv_hyb_cloud: "Hybrid Cloud",
-                srv_warehouse: "Warehouse / Logistics",
-                srv_portal: "Customer Portal",
-                serv_obs_ph: "Services notes...",
-                section5_title: "5. Commercial Terms",
-                term_label: "Contract Duration",
-                opt_24m: "24 months (5% commission)",
-                opt_36m: "36 months (7% commission)",
-                opt_48m: "48 months (8.5% commission)",
-                opt_60m: "60+ months (10% commission)",
-                term_note: "*Longer contracts increase recurring commission.",
-                term_obs_ph: "Commercial notes...",
-                section6_title: "6. Requirements & Timeline",
-                timeline_label: "Implementation Deadline / Critical Dates",
-                timeline_ph: "Ex: Q3 2026",
-                general_obs_label: "Other Special Requirements",
-                section7_title: "7. Responsible Party",
-                resp_name: "Name",
-                resp_role: "Role",
-                resp_company: "Company",
-                resp_email: "E-mail",
-                resp_phone: "Phone",
-                btn_submit: "Generate Full Qualification",
-                output_title: "📋 JSON / TEXT FOR HUBSPOT & ENGINEERING",
-                btn_copy: "Copy Data"
+                sub_41: "4.1 Connectivity", srv_41_1: "Internal Cross Connect", srv_41_2: "External Cross Connect", srv_41_3: "Optical Fiber Backbone", srv_41_4: "On-net con carriers", srv_41_5: "IX Access / Peering", srv_41_6: "Cloud Connect",
+                sub_42: "4.2 Space & Infrastructure", srv_42_1: "Space Rent (Land/Storage)", srv_42_2: "WorkArea", srv_42_3: "Cage", srv_42_4: "Rack Install/Conversion",
+                sub_43: "4.3 Electrical Infrastructure", srv_43_1: "Electrical Install", srv_43_2: "Additional Circuits", srv_43_3: "rPDUs (Power Strips)", srv_43_4: "Monthly Consump. Report", srv_43_5: "Redundancy (A/B)",
+                sub_44: "4.4 Technical Services (IC²)", srv_44_1: "Smart Hands & Eyes", srv_44_2: "Specialized Tech Support", srv_44_3: "BMS Monitoring", srv_44_4: "24x7 Service / SLA Custom",
+                sub_45: "4.5 Physical & Logical Security", srv_45_1: "Patrolling", srv_45_2: "CCTV Monitoring", srv_45_3: "Custom Access Systems", srv_45_4: "Biometric Access", srv_45_5: "Anti-DDoS", srv_45_6: "SOC / SIEM",
+                sub_46: "4.6 Cloud & 4.7 Logistics", srv_46_1: "Private/Hybrid Cloud", srv_47_1: "Warehouse", srv_47_2: "Customer Portal",
+                section5_title: "5. Commercial Terms", section7_title: "6. Responsible",
+                btn_submit: "Generate Qualification", send_instruction: "Send to: pfischer@nextstream.com",
+                btn_copy: "Copy Text", btn_email: "Open Email to Send"
             },
             es: {
-                subtitle: "Formulario de Calificación Integrado a HubSpot",
+                subtitle: "Calificación de Oportunidad - HubSpot Integrated",
                 section1_title: "1. Perfil de la Oportunidad",
-                partner_label: "Socio / Solicitante",
-                client_label: "Cliente Final (Sector/Industria)",
-                date_label: "Fecha de Solicitud",
-                location_label: "Localidad de Interés (Sitios)",
-                country_br: "🇧🇷 BRASIL",
-                country_mx: "🇲🇽 MÉXICO",
-                country_cl: "🇨🇱 CHILE",
-                country_pe: "🇵🇪 PERÚ",
-                country_ar: "🇦🇷 ARGENTINA",
-                loc_obs_ph: "Observaciones de ubicación...",
-                section2_title: "2. Infraestructura (Misión Crítica)",
-                alert_mx: "<strong>⚠️ RESTRICCIÓN MÉXICO:</strong> Rack Mín 45U | Densidad Mín: 2 kVA | Máx: 6 kVA.",
-                rack_label: "Cant. Racks",
-                rack_ph: "Estándar: 1/2 Rack (22U)",
-                density_label: "Densidad (kVA Nominal)",
-                density_ph: "Ej: 2 kVA (Nominal)",
-                setup_label: "Modelo de Configuración (CAPEX)",
-                opt_upfront: "Upfront (Pago Anticipado)",
-                opt_diluted: "Diluido en Mensualidad (OpEx)",
-                setup_obs_ph: "Observaciones de setup...",
-                section3_title: "3. Conectividad e IP",
-                conn_model_label: "Modelo de Conexión",
-                opt_select: "Seleccione...",
-                opt_darkfiber: "Fibra Oscura",
-                opt_l2l: "L2L (Lan to Lan)",
-                opt_dia: "Internet Dedicado",
-                opt_other: "Otro",
-                link_config_label: "Configuración de Enlace",
-                opt_single: "Sencillo",
-                opt_redundant: "Redundante",
-                bandwidth_label: "Ancho de Banda",
-                bandwidth_ph: "Ej: 100 Mbps o 10 Gbps",
-                ip_label: "Direccionamiento IPv4",
-                opt_none: "Ninguno",
-                carrier_label: "Operador Preferido",
-                opt_carrier_neutral: "Sin preferencia (Carrier Neutral)",
-                conn_obs_ph: "Observaciones de conectividad...",
-                section4_title: "4. Portafolio de Servicios (HubSpot Mapping)",
-                services_subtitle: "Seleccione adicionales. Etiquetas indican tipo de ingreso: MRC (Mensual) | NRC (Pago Único)",
-                sub_conn: "4.1 Conectividad",
-                srv_cc_int: "Cross Connect Interno",
-                srv_cc_ext: "Cross Connect Externo",
-                srv_fiber: "Optical Fiber Backbone",
-                srv_onnet: "On-net con carriers",
-                srv_peering: "Acceso IX / Peering",
-                srv_cloud_conn: "Cloud Connect",
-                sub_space: "4.2 Espacio e Infraestructura",
-                srv_space_rent: "Renta de Espacio",
-                srv_workarea: "WorkArea",
-                srv_cage: "Cage (Jaula)",
-                srv_rack: "Rack (Instalación/Conversión)",
-                sub_power: "4.3 Infraestrutura Eléctrica",
-                srv_elec_inst: "Instalaciones Eléctricas",
-                srv_circuits: "Circuitos Adicionales",
-                srv_rpdus: "rPDUs (Regletas)",
-                srv_pwr_report: "Reporte de Consumo",
-                srv_redundancy: "Redundancia (A/B)",
-                sub_tech: "4.4 Servicios Técnicos (IC²)",
-                srv_smart_hands: "Smart Hands & Eyes",
-                srv_tech_supp: "Soporte Técnico (Ad Hoc)",
-                srv_bms: "Monitoreo BMS",
-                srv_sla: "SLA Diferenciado",
-                sub_sec: "4.5 Seguridad Física y Lógica",
-                srv_patrol: "Patrullaje",
-                srv_cctv: "CCTV (Monitoreo)",
-                srv_access: "Sistema de Acceso Personalizado",
-                srv_bio: "Acceso Biométrico",
-                srv_audit: "Auditorías de Acceso",
-                srv_ddos: "Anti-DDoS",
-                srv_soc: "SOC / SIEM",
-                srv_firewall: "Firewall Administrado",
-                sub_other: "4.6 Cloud y 4.7 Logística",
-                srv_pvt_cloud: "Private Cloud",
-                srv_hyb_cloud: "Hybrid Cloud",
-                srv_warehouse: "Warehouse / Logística",
-                srv_portal: "Portal de Cliente",
-                serv_obs_ph: "Observaciones de servicios...",
-                section5_title: "5. Términos Comerciales",
-                term_label: "Duración del Contrato",
-                opt_24m: "24 meses (5% comisión)",
-                opt_36m: "36 meses (7% comisión)",
-                opt_48m: "48 meses (8.5% comisión)",
-                opt_60m: "60+ meses (10% comisión)",
-                term_note: "*Contratos más largos aumentan la comisión recurrente.",
-                term_obs_ph: "Observaciones comerciales...",
-                section6_title: "6. Requisitos y Cronograma",
-                timeline_label: "Plazo de Implementación / Fechas Críticas",
-                timeline_ph: "Ej: Q3 2026",
-                general_obs_label: "Otros Requisitos Especiales",
-                section7_title: "7. Responsable",
-                resp_name: "Nombre",
-                resp_role: "Cargo",
-                resp_company: "Empresa",
-                resp_email: "Correo",
-                resp_phone: "Teléfono",
-                btn_submit: "Generar Calificación Completa",
-                output_title: "📋 JSON / TEXTO PARA HUBSPOT E INGENIERÍA",
-                btn_copy: "Copiar Datos"
+                partner_label: "Socio / Solicitante", client_label: "Cliente Final", date_label: "Fecha", location_label: "Sitios de Interés",
+                section2_title: "2. Infraestructura", alert_mx: "<strong>⚠️ MÉXICO:</strong> Rack 45U | Min: 2 kVA | Máx: 6 kVA.",
+                rack_label: "Cant. Racks", density_label: "Densidad (kVA Nominal)", setup_label: "Setup",
+                opt_upfront: "Upfront (CAPEX)", opt_diluted: "Diluido (OpEx)",
+                section3_title: "3. Conectividad e IP", conn_model_label: "Modelo", ip_label: "IPv4", opt_none: "Ninguno",
+                section4_title: "4. Portafolio de Serviços (HubSpot Mapping)",
+                sub_41: "4.1 Conectividade", srv_41_1: "Cross Connect Interno", srv_41_2: "Cross Connect Externo", srv_41_3: "Backbone de Fibra", srv_41_4: "On-net con carriers", srv_41_5: "Acceso a IX / Peering", srv_41_6: "Cloud Connect",
+                sub_42: "4.2 Espacio e Infraestructura", srv_42_1: "Renta de Espacio", srv_42_2: "WorkArea", srv_42_3: "Cage (Jaula)", srv_42_4: "Instalación/Conversión Rack",
+                sub_43: "4.3 Infraestructura Elétrica", srv_43_1: "Instalaciones Elétricas", srv_43_2: "Circuitos Adicionales", srv_43_3: "rPDUs (Regletas)", srv_43_4: "Reporte de Consumo", srv_43_5: "Redundancia (A/B)",
+                sub_44: "4.4 Serviços Técnicos (IC²)", srv_44_1: "Smart Hands & Eyes", srv_44_2: "Soporte Especializado", srv_44_3: "Monitoreo BMS", srv_44_4: "Servicio 24x7 / SLA Custom",
+                sub_45: "4.5 Seguridad Física y Lógica", srv_45_1: "Patrullaje", srv_45_2: "Monitoreo CCTV", srv_45_3: "Acceso Customizado", srv_45_4: "Acceso Biométrico", srv_45_5: "Anti-DDoS", srv_45_6: "SOC / SIEM",
+                sub_46: "4.6 Cloud y 4.7 Logística", srv_46_1: "Private/Hybrid Cloud", srv_47_1: "Warehouse", srv_47_2: "Portal del Cliente",
+                section5_title: "5. Términos Comerciais", section7_title: "6. Responsable",
+                btn_submit: "Generar Calificación", send_instruction: "Enviar a: pfischer@nextstream.com",
+                btn_copy: "Copiar Texto", btn_email: "Abrir Correo y Enviar"
             }
         };
 
         let currentLang = 'pt';
-
         function setLanguage(lang) {
             currentLang = lang;
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' && el.type === 'button') {
-                         el.value = translations[lang][key];
-                    } else {
-                         el.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-
-            const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-            placeholders.forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
-                }
-            });
-
+            document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = translations[lang][el.getAttribute('data-i18n')]; });
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
         }
 
         document.getElementById('reqDate').valueAsDate = new Date();
-
         function checkMexicoRules() {
-            const mxSite = document.querySelector('input[value="🇲🇽 Ixtlahuaca"]');
-            const alertBox = document.getElementById('mexicoAlert');
-            alertBox.style.display = (mxSite && mxSite.checked) ? 'block' : 'none';
+            const mx = document.querySelector('input[value="🇲🇽 Ixtlahuaca"]');
+            document.getElementById('mexicoAlert').style.display = (mx && mx.checked) ? 'block' : 'none';
         }
 
         function generateReport() {
             const val = (id) => document.getElementById(id).value;
-            const checked = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value).join(', ');
-            
-            const report = `
-=== NEXTSTREAM OPPORTUNITY QUALIFICATION ===
-[Language: ${currentLang.toUpperCase()}]
-
-1. PROFILE
-Partner: ${val('partnerName')}
-Client: ${val('endClient')}
-Date: ${val('reqDate')}
-Sites: ${checked('site')}
-Loc Obs: ${val('locObs')}
-
-2. INFRASTRUCTURE
-Racks: ${val('rackQty')}
-Density: ${val('density')} kVA (Nominal)
-Setup: ${val('setupModel')}
-Infra Obs: ${val('setupObs')}
-
-3. CONNECTIVITY
-Model: ${val('connModel')}
-Config: ${val('linkConfig')}
-Bandwidth: ${val('bandwidth')}
-IPs: ${val('ipAddress')}
-Carrier: ${val('carrier')}
-Conn Obs: ${val('connObs')}
-
-4. SERVICES (MRC/NRC)
-${Array.from(document.querySelectorAll('input[name="serv"]:checked')).map(cb => '- ' + cb.value).join('\n')}
-Services Obs: ${val('servObs')}
-
-5. COMMERCIAL
-Term: ${val('contractTerm')} months
-Comm Obs: ${val('termObs')}
-
-6. TIMELINE
-Timeline: ${val('timeline')}
-Reqs: ${val('generalObs')}
-
-7. RESPONSIBLE
-Name: ${val('respName')} (${val('respRole')})
-Company: ${val('respCompany')}
-Contact: ${val('respEmail')} | ${val('respPhone')}
-============================================
-`;
-            const outArea = document.getElementById('output-area');
-            const outText = document.getElementById('output-text');
-            outText.value = report;
-            outArea.style.display = 'block';
-            outArea.scrollIntoView({behavior: "smooth"});
+            const sites = Array.from(document.querySelectorAll('input[name="site"]:checked')).map(cb => cb.value).join(', ');
+            const servs = Array.from(document.querySelectorAll('input[name="serv"]:checked')).map(cb => '- ' + cb.value).join('\n');
+            const report = `=== NEXTSTREAM DEAL REGISTRATION ===\n[Language: ${currentLang.toUpperCase()}]\n\n1. PROFILE\nPartner: ${val('partnerName')}\nClient: ${val('endClient')}\nSites: ${sites}\n\n2. INFRA\nRacks: ${val('rackQty')}\nDensity: ${val('density')} kVA Nominal\nSetup: ${val('setupModel')}\n\n3. CONNECTIVITY\nModel: ${val('connModel')}\nBandwidth: ${val('bandwidth')}\nIP: ${val('ipAddress')}\nCarrier: ${val('carrier')}\n\n4. SERVICES\n${servs || 'N/A'}\n\n5. COMMERCIAL\nTerm: ${val('contractTerm')} months\n\n6. CONTACT\nName: ${val('respName')}\nEmail: ${val('respEmail')}\n====================================`;
+            document.getElementById('output-text').value = report;
+            document.getElementById('output-area').style.display = 'block';
+            document.getElementById('emailBtn').href = `mailto:pfischer@nextstream.com?subject=Deal Registration: ${val('endClient')}&body=${encodeURIComponent(report)}`;
+            document.getElementById('output-area').scrollIntoView({behavior: "smooth"});
         }
 
         function copyText() {
-            const copyText = document.getElementById("output-text");
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value);
-            alert(currentLang === 'pt' ? "Dados copiados!" : (currentLang === 'es' ? "¡Datos copiados!" : "Data copied!"));
+            const txt = document.getElementById("output-text");
+            txt.select(); document.execCommand('copy');
+            alert(currentLang === 'pt' ? "Copiado!" : "Copied!");
         }
     </script>
-
 </body>
 </html>
