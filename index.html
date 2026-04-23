@@ -46,7 +46,7 @@
 
         h1 { color: var(--primary); margin: 0; font-size: 24px; }
         h2 { border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px; color: var(--primary); font-size: 18px; text-transform: uppercase; }
-        h3 { color: #444; font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        h3 { color: #444; font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; text-transform: uppercase;}
         h4 { margin: 10px 0 5px 0; color: var(--primary); font-size: 14px; }
 
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
@@ -82,7 +82,7 @@
             font-weight: normal;
             margin: 6px 0;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px; /* Ajuste para caber nomes longos de produtos */
         }
 
         input[type="checkbox"] { margin-right: 8px; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
@@ -280,36 +280,57 @@
         </div>
 
         <h2>5. Portfólio de Serviços (HubSpot Mapping)</h2>
-        <div class="grid-2">
+        <div class="grid-3">
             <div class="services-box">
                 <h3>5.1 Conectividade</h3>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Interno MRC+NRC"> Cross Connect Interno MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Externo MRC+NRC"> Cross Connect Externo MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Optical Fiber Backbone MRC+NRC"> Optical Fiber Backbone MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net carriers MRC"> On-net com carriers MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net con carriers MRC"> On-net con carriers MRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="IX Access / Peering MRC"> IX Access / Peering MRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cloud Connect MRC"> Cloud Connect MRC</label>
             </div>
+            
             <div class="services-box">
-                <h3>5.2 Espaço & Infraestrutura</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
+                <h3>5.2 Espaço & Infra</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Aluguel de Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="WorkArea MRC+NRC"> WorkArea MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage NRC"> Cage (Gaiola) NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Conversão Rack MRC+NRC"> Conversão de Rack MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage (Gaiola) NRC"> Cage (Gaiola) NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalação/Conversão de Rack MRC+NRC"> Instalação/Conversão de Rack MRC+NRC</label>
             </div>
+
             <div class="services-box">
-                <h3>5.3 Elétrica & 5.4 Técnicos</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas"> Instalações Elétricas MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands MRC"> Smart Hands & Eyes MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte 24x7 MRC"> Serviço 24x7 / SLA Custom MRC</label>
+                <h3>5.3 Infra Elétrica</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas MRC+NRC"> Instalações Elétricas MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Circuitos Adicionais MRC+NRC"> Circuitos Adicionais MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs (Réguas) MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Relatório de Consumo MRC"> Relatório de Consumo MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Redundância (A/B) MRC"> Redundância (A/B) MRC</label>
             </div>
+
             <div class="services-box">
-                <h3>5.5 Segurança & 5.7 Logística</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring"> CCTV Monitoring MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico"> Acesso Biométrico MRC+NRC</label>
+                <h3>5.4 Serviços Técnicos (IC²)</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands & Eyes MRC"> Smart Hands & Eyes MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte Especializado MRC"> Suporte Especializado MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Monitoramento BMS MRC/NRC"> Monitoramento BMS MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Serviço 24x7 / SLA Custom MRC"> Serviço 24x7 / SLA Custom MRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>5.5 Segurança Física/Lógica</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Patrolling MRC"> Patrolling MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring MRC/NRC"> CCTV Monitoring MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Customizado MRC+NRC"> Acesso Customizado MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico MRC+NRC"> Acesso Biométrico MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Anti-DDoS MRC"> Anti-DDoS MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="SOC / SIEM MRC"> SOC / SIEM MRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>5.6 Cloud & 5.7 Logística</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Private/Hybrid Cloud MRC"> Private/Hybrid Cloud MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse (Armazém) MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Portal do Cliente MRC"> Portal do Cliente MRC</label>
             </div>
         </div>
 
@@ -389,7 +410,7 @@
             out.innerText = text;
             out.style.display = 'block';
         } else if (mode === 'copy') {
-            navigator.clipboard.writeText(text).then(() => alert('Resumo copiado para o HubSpot!'));
+            navigator.clipboard.writeText(text).then(() => alert('Resumo copiado para a área de transferência!'));
         } else if (mode === 'email') {
             window.location.href = `mailto:pfischer@nextstream.com?subject=Qualificação: ${document.getElementById('clientName').value}&body=${encodeURIComponent(text)}`;
         }
