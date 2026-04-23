@@ -23,7 +23,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             background: var(--white);
             padding: 30px;
@@ -45,15 +45,17 @@
 
         h1 { color: var(--primary); margin: 0; font-size: 24px; }
         h2 { border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px; color: var(--primary); font-size: 20px; }
+        h3 { color: #444; font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
         h4 { margin: 10px 0 5px 0; color: var(--primary); }
 
-        .form-section { border: none; padding: 0; margin-bottom: 25px; }
-        
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px; }
         
         .field-group { display: flex; flex-direction: column; margin-bottom: 15px; }
         label { font-weight: bold; margin-bottom: 5px; font-size: 14px; }
-        input, select, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+        input[type="text"], input[type="number"], input[type="date"], select, textarea { 
+            padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;
+        }
 
         .sites-container {
             display: grid;
@@ -65,15 +67,23 @@
             border: 1px solid #eee;
         }
 
-        .country-group label {
+        .services-box {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #eaeaea;
+        }
+
+        .checkbox-label {
             display: flex;
             align-items: center;
             font-weight: normal;
-            margin: 4px 0;
+            margin: 6px 0;
             cursor: pointer;
+            font-size: 13px;
         }
 
-        input[type="checkbox"] { margin-right: 8px; width: 18px; height: 18px; cursor: pointer; }
+        input[type="checkbox"] { margin-right: 8px; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
 
         .restriction-box {
             background: #fff3e0;
@@ -126,7 +136,7 @@
     <header>
         <img src="https://nextstream.com/wp-content/uploads/2025/06/Nextstream-azul.svg" alt="NextStream">
         <h1>PARTNER ALLIANCE PORTAL</h1>
-        <p>Formulário de Qualificação Estratégica (HubSpot Ready)</p>
+        <p>Formulário de Qualificação Integrado ao HubSpot</p>
     </header>
 
     <form id="qualifForm">
@@ -150,29 +160,29 @@
         <div class="sites-container">
             <div class="country-group">
                 <h4>🇧🇷 BRASIL</h4>
-                <label><input type="checkbox" name="site" value="GRUTB01"> Tamboré (GRUTB01)</label>
-                <label><input type="checkbox" name="site" value="CWBCT01"> Curitiba (CWBCT01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="GRUTB01"> Tamboré (GRUTB01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="CWBCT01"> Curitiba (CWBCT01)</label>
             </div>
             <div class="country-group">
                 <h4>🇲🇽 MÉXICO</h4>
-                <label><input type="checkbox" name="site" value="MEXIX01"> Ixtlahuaca (MEXIX01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="MEXIX01"> Ixtlahuaca (MEXIX01)</label>
             </div>
             <div class="country-group">
                 <h4>🇦🇷 ARGENTINA</h4>
-                <label><input type="checkbox" name="site" value="EZEBA01"> Barracas (EZEBA01)</label>
-                <label><input type="checkbox" name="site" value="EZEVE01"> Velez (EZEVE01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="EZEBA01"> Barracas (EZEBA01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="EZEVE01"> Velez (EZEVE01)</label>
             </div>
             <div class="country-group">
                 <h4>🇵🇪 PERU</h4>
-                <label><input type="checkbox" name="site" value="LIMLI01"> Lince (LIMLI01)</label>
-                <label><input type="checkbox" name="site" value="LIMMO01"> Monterico (LIMMO01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="LIMLI01"> Lince (LIMLI01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="LIMMO01"> Monterico (LIMMO01)</label>
             </div>
             <div class="country-group">
                 <h4>🇨🇱 CHILE</h4>
-                <label><input type="checkbox" name="site" value="SCLPA01"> Paine 1 (SCLPA01)</label>
-                <label><input type="checkbox" name="site" value="SCLPA02"> Paine 2 (SCLPA02)</label>
-                <label><input type="checkbox" name="site" value="SCLAP01"> Apoquindo (SCLAP01)</label>
-                <label><input type="checkbox" name="site" value="SCLSM01"> San Martin (SCLSM01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="SCLPA01"> Paine 1 (SCLPA01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="SCLPA02"> Paine 2 (SCLPA02)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="SCLAP01"> Apoquindo (SCLAP01)</label>
+                <label class="checkbox-label"><input type="checkbox" name="site" value="SCLSM01"> San Martin (SCLSM01)</label>
             </div>
         </div>
 
@@ -186,38 +196,108 @@
                 <input type="number" id="racks" min="1">
             </div>
             <div class="field-group">
-                <label>Densidade (kVA p/ Rack)</label>
+                <label>Densidade (kVA Nominal)</label>
                 <input type="number" id="kva" step="0.1">
             </div>
             <div class="field-group">
-                <label>Modelo Setup</label>
+                <label>Modelo Setup (CAPEX)</label>
                 <select id="setupModel">
-                    <option value="CAPEX">Upfront (CAPEX)</option>
-                    <option value="OPEX">Diluído (OPEX)</option>
+                    <option value="Upfront (Integral)">Upfront (Integral)</option>
+                    <option value="Diluído (OpEx)">Diluído (OpEx)</option>
                 </select>
             </div>
         </div>
 
-        <h2>3. Portfólio de Serviços</h2>
+        <h2>3. Conectividade & IP</h2>
+        <div class="grid-2">
+            <div class="field-group">
+                <label>Modelo de Conexão</label>
+                <select id="connModel">
+                    <option value="Nenhum">Selecione...</option>
+                    <option value="Fibra Apagada">Fibra Apagada</option>
+                    <option value="MPLS">MPLS</option>
+                    <option value="Internet Dedicada">Internet Dedicada</option>
+                    <option value="L2L">L2L</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label>Banda Internet</label>
+                <input type="text" id="bandwidth" placeholder="Ex: 1Gbps, 10Gbps">
+            </div>
+            <div class="field-group">
+                <label>IPv4</label>
+                <select id="ipv4">
+                    <option value="Nenhum">Nenhum</option>
+                    <option value="/29 (5 IPs)">/29 (5 IPs)</option>
+                    <option value="/28 (13 IPs)">/28 (13 IPs)</option>
+                </select>
+            </div>
+        </div>
+
+        <h2>4. Portfólio de Serviços (HubSpot Mapping)</h2>
+        <div class="grid-2">
+            <div class="services-box">
+                <h3>4.1 Conectividade</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Interno MRC+NRC"> Cross Connect Interno MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Externo MRC+NRC"> Cross Connect Externo MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Optical Fiber Backbone MRC+NRC"> Optical Fiber Backbone MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net con carriers MRC"> On-net com carriers MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="IX Access / Peering MRC"> IX Access / Peering MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cloud Connect MRC"> Cloud Connect MRC</label>
+            </div>
+            
+            <div class="services-box">
+                <h3>4.2 Espaço & Infraestrutura</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Aluguel de Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="WorkArea MRC+NRC"> WorkArea MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage (Gaiola) NRC"> Cage (Gaiola) NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalação/Conversão de Rack MRC+NRC"> Instalação/Conversão de Rack MRC+NRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>4.3 Infraestrutura Elétrica</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas MRC+NRC"> Instalações Elétricas MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Circuitos Adicionais MRC+NRC"> Circuitos Adicionais MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs (Réguas) MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Relatório de Consumo MRC"> Relatório de Consumo MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Redundância (A/B) MRC"> Redundância (A/B) MRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>4.4 Serviços Técnicos (IC²)</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands & Eyes MRC"> Smart Hands & Eyes MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte Especializado MRC"> Suporte Especializado MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Monitoramento BMS MRC/NRC"> Monitoramento BMS MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Serviço 24x7 / SLA Custom MRC"> Serviço 24x7 / SLA Custom MRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>4.5 Segurança Física & Lógica</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Patrolling MRC"> Patrolling MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring MRC/NRC"> CCTV Monitoring MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Customizado MRC+NRC"> Acesso Customizado MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico MRC+NRC"> Acesso Biométrico MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Anti-DDoS MRC"> Anti-DDoS MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="SOC / SIEM MRC"> SOC / SIEM MRC</label>
+            </div>
+
+            <div class="services-box">
+                <h3>4.6 Cloud & 4.7 Logística</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Private/Hybrid Cloud MRC"> Private/Hybrid Cloud MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse (Armazém) MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Portal do Cliente MRC"> Portal do Cliente MRC</label>
+            </div>
+        </div>
+
+        <h2>5. Termos Comerciais</h2>
         <div class="grid-3">
             <div class="field-group">
-                <label>Conectividade</label>
-                <label><input type="checkbox" name="svc" value="Cross Connect"> Cross Connect</label>
-                <label><input type="checkbox" name="svc" value="Cloud Connect"> Cloud Connect</label>
-                <label><input type="checkbox" name="svc" value="IX Peering"> IX / Peering</label>
-            </div>
-            <div class="field-group">
-                <label>Suporte & Segurança</label>
-                <label><input type="checkbox" name="svc" value="Smart Hands"> Smart Hands 24x7</label>
-                <label><input type="checkbox" name="svc" value="Anti-DDoS"> Proteção Anti-DDoS</label>
-                <label><input type="checkbox" name="svc" value="CCTV Custom"> Monitoramento Custom</label>
-            </div>
-            <div class="field-group">
-                <label>Prazo Contratual</label>
+                <label>Duração do Contrato</label>
                 <select id="term">
-                    <option value="24 meses">24 meses (5% disc)</option>
-                    <option value="36 meses">36 meses (7% disc)</option>
-                    <option value="60 meses">60 meses (10% disc)</option>
+                    <option value="24 meses (5%)">24 meses (5%)</option>
+                    <option value="36 meses (7%)">36 meses (7%)</option>
+                    <option value="48 meses (8.5%)">48 meses (8.5%)</option>
+                    <option value="60+ meses (10%)">60+ meses (10%)</option>
                 </select>
             </div>
         </div>
@@ -236,25 +316,38 @@
     function generateQualif() {
         const partner = document.getElementById('partner').value || 'N/A';
         const client = document.getElementById('client').value || 'N/A';
+        const reqDate = document.getElementById('reqDate').value || 'N/A';
+        
         const racks = document.getElementById('racks').value || '0';
         const kva = document.getElementById('kva').value || '0';
         const setup = document.getElementById('setupModel').value;
+        
+        const connModel = document.getElementById('connModel').value;
+        const bandwidth = document.getElementById('bandwidth').value || 'N/A';
+        const ipv4 = document.getElementById('ipv4').value;
         const term = document.getElementById('term').value;
 
         let selectedSites = [];
         document.querySelectorAll('input[name="site"]:checked').forEach(cb => selectedSites.push(cb.value));
 
         let selectedSvcs = [];
-        document.querySelectorAll('input[name="svc"]:checked').forEach(cb => selectedSvcs.push(cb.value));
+        document.querySelectorAll('input[name="svc"]:checked').forEach(cb => selectedSvcs.push(`- ${cb.value}`));
 
-        const summary = `--- QUALIFICAÇÃO NEXTSTREAM ---\n` +
+        const summary = `=== QUALIFICAÇÃO NEXTSTREAM ===\n\n` +
+                        `[1] PERFIL\n` +
                         `Parceiro: ${partner}\n` +
                         `Cliente: ${client}\n` +
-                        `Sites Selecionados: ${selectedSites.join(', ') || 'Nenhum'}\n` +
-                        `Infra: ${racks} Racks @ ${kva}kVA/Rack (${setup})\n` +
-                        `Serviços: ${selectedSvcs.join(', ')}\n` +
-                        `Termo: ${term}\n` +
-                        `-------------------------------`;
+                        `Data: ${reqDate}\n` +
+                        `Sites (IDs): ${selectedSites.join(', ') || 'Nenhum'}\n\n` +
+                        `[2] INFRAESTRUTURA\n` +
+                        `${racks} Racks | ${kva} kVA | Setup: ${setup}\n\n` +
+                        `[3] CONECTIVIDADE & IP\n` +
+                        `Modelo: ${connModel} | Banda: ${bandwidth} | IPv4: ${ipv4}\n\n` +
+                        `[4] SERVIÇOS SELECIONADOS\n` +
+                        `${selectedSvcs.join('\n') || 'Nenhum serviço selecionado'}\n\n` +
+                        `[5] TERMOS\n` +
+                        `Contrato: ${term}\n` +
+                        `===============================`;
 
         const output = document.getElementById('summaryOutput');
         output.innerText = summary;
