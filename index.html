@@ -4,142 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NextStream | Partner Alliance Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #0056b3;
-            --secondary: #f4f7f6;
-            --text: #333;
-            --white: #ffffff;
-            --accent: #ff9800;
-            --danger: #dc3545;
+            /* Paleta Tech Dark / NOC Style */
+            --bg-body: #0b1120;
+            --bg-panel: #111827;
+            --bg-card: #1f2937;
+            --bg-input: #0f172a;
+            
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            
+            --primary: #3b82f6;      /* Azul NextStream iluminado */
+            --primary-glow: rgba(59, 130, 246, 0.4);
+            --accent: #10b981;       /* Verde sucesso */
+            --warning: #f59e0b;      /* Laranja alerta */
+            --danger: #ef4444;       /* Vermelho erro */
+            
+            --border: #374151;
+            --border-focus: #60a5fa;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--secondary);
-            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            /* Fundo sutil de malha de pontos (tech grid) */
+            background-image: radial-gradient(#1f2937 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 30px 15px;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: var(--bg-panel);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 1px 3px rgba(255,255,255,0.05) inset;
+            border: 1px solid var(--border);
         }
 
         header {
             text-align: center;
-            border-bottom: 2px solid var(--primary);
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            padding-bottom: 30px;
         }
 
+        /* Fundo branco com bordas arredondadas apenas para a logo ficar legível no Dark Mode */
         header img {
-            width: 250px;
-            margin-bottom: 15px;
+            width: 240px;
+            background: #ffffff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.05);
         }
 
-        h1 { color: var(--primary); margin: 0; font-size: 24px; }
-        h2 { border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px; color: var(--primary); font-size: 18px; text-transform: uppercase; }
-        h3 { color: #444; font-size: 14px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; text-transform: uppercase;}
-        h4 { margin: 10px 0 5px 0; color: var(--primary); font-size: 14px; }
+        h1 { color: var(--text-main); margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+        p.subtitle { color: var(--primary); font-weight: 500; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        h2 { 
+            color: var(--text-main); 
+            font-size: 16px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            margin-top: 40px; 
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        h2::before {
+            content: ''; display: inline-block; width: 12px; height: 12px;
+            background: var(--primary); border-radius: 3px; margin-right: 12px;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        h3 { color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 15px; }
+        h4 { margin: 0 0 15px 0; color: var(--primary); font-size: 14px; text-transform: uppercase; font-weight: 600; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;}
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px; }
         
-        .field-group { display: flex; flex-direction: column; margin-bottom: 15px; }
-        label { font-weight: bold; margin-bottom: 5px; font-size: 13px; }
-        input, select { 
-            padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;
+        .field-group { display: flex; flex-direction: column; }
+        label { font-weight: 500; margin-bottom: 8px; font-size: 13px; color: var(--text-muted); }
+        
+        input[type="text"], input[type="number"], input[type="date"], select { 
+            background: var(--bg-input);
+            color: var(--text-main);
+            padding: 12px 16px; 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            font-size: 14px; 
+            width: 100%; 
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            color-scheme: dark; /* Faz o calendário do datepicker ficar dark */
         }
 
-        .sites-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #eee;
-            transition: border-color 0.3s;
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
 
-        .services-box {
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #eaeaea;
+        /* Estilo dos painéis agrupadores */
+        .sites-container, .services-box {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
+        /* Transformando Checkboxes em "Smart Cards" interativos */
         .checkbox-label {
             display: flex;
             align-items: center;
-            font-weight: normal;
-            margin: 6px 0;
+            background: var(--bg-input);
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
             cursor: pointer;
-            font-size: 12px; /* Ajuste para caber nomes longos de produtos */
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            user-select: none;
         }
 
-        input[type="checkbox"] { margin-right: 8px; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+        .checkbox-label:hover { border-color: #4b5563; }
+
+        /* Magia do CSS moderno: Estiliza o container quando o filho (input) está checado */
+        .checkbox-label:has(input:checked) {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        input[type="checkbox"] { 
+            margin-right: 12px; 
+            width: 18px; height: 18px; 
+            accent-color: var(--primary); 
+            cursor: pointer; 
+        }
 
         .restriction-box {
-            background: #fff3e0;
-            border-left: 5px solid var(--accent);
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 12px;
-            font-weight: bold;
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            color: var(--warning);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
         }
 
         .quote-box {
-            font-size: 12px; color: #777; margin-bottom: 15px; font-style: italic; background: #f0f7ff; padding: 10px; border-radius: 4px;
+            font-size: 13px; color: var(--text-muted); margin-bottom: 20px; 
+            font-style: italic; background: var(--bg-card); 
+            padding: 16px; border-radius: 8px; border-left: 4px solid var(--primary);
         }
 
+        /* Botões Estilo Cyber */
         .actions {
-            margin-top: 40px;
+            margin-top: 50px;
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
         }
 
         button {
-            padding: 12px 25px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
             font-size: 14px;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: #004494; }
+        .btn-primary { 
+            background: var(--primary); 
+            color: white; 
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .btn-primary:hover { 
+            background: #2563eb; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
         
-        .btn-outline { background: white; border: 2px solid var(--primary); color: var(--primary); }
-        .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-outline { 
+            background: transparent; 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+        }
+        .btn-outline:hover { 
+            border-color: var(--primary); 
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
 
+        /* Terminal de Saída */
         #summaryOutput {
-            margin-top: 30px;
-            padding: 20px;
-            background: #2d3436;
-            color: #dfe6e9;
-            border-radius: 8px;
+            margin-top: 40px;
+            padding: 24px;
+            background: #000000;
+            color: #10b981; /* Texto Verde Terminal */
+            border-radius: 12px;
             display: none;
             white-space: pre-wrap;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
             font-size: 13px;
-            border: 1px solid #000;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1) inset;
         }
         
-        .error-msg { color: var(--danger); font-size: 12px; font-weight: bold; display: none; margin-top: 5px; }
+        .error-msg { color: var(--danger); font-size: 13px; font-weight: 600; display: none; margin-top: 10px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px;}
+
+        /* Ajustes Mobile */
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            .actions { flex-direction: column; }
+            button { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -148,11 +251,11 @@
     <header>
         <img src="https://nextstream.com/wp-content/uploads/2025/06/Nextstream-azul.svg" alt="NextStream">
         <h1>PARTNER ALLIANCE PORTAL</h1>
-        <p>Qualificação de Oportunidades & Alocação de CAPEX</p>
+        <p class="subtitle">Qualificação de Oportunidades & Alocação de CAPEX</p>
     </header>
 
     <form id="qualifForm">
-        <h2>1. Identificação do Cliente Final (Lead Enrichment)</h2>
+        <h2>1. Identificação do Cliente (Lead Enrichment)</h2>
         <div class="grid-3">
             <div class="field-group">
                 <label>Parceiro / Solicitante</label>
@@ -196,12 +299,12 @@
             </div>
         </div>
 
-        <h2>2. Alocação Geográfica Exata (Mapeamento de Demanda)</h2>
+        <h2>2. Alocação Geográfica Exata (Demand Map)</h2>
         <div class="quote-box">
-            "A visibilidade regional precoce é o que permite gerenciar o CAPEX e a eficiência de distribuição de forma inteligente." (Dent & White)
+            "A visibilidade regional precoce é o que permite gerenciar o CAPEX e a eficiência de distribuição de forma inteligente." — Dent & White
         </div>
         
-        <div class="sites-container" id="geoAllocationSection">
+        <div class="sites-container" id="geoAllocationSection" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
             <div class="country-group">
                 <h4>🇧🇷 BRASIL</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="GRUTB01"> Tamboré (GRUTB01)</label>
@@ -229,52 +332,52 @@
                 <label class="checkbox-label"><input type="checkbox" name="site" value="SCLSM01"> San Martin (SCLSM01)</label>
             </div>
         </div>
-        <div id="siteError" class="error-msg">⚠️ Erro de Alocação: A definição exata do Site Code é obrigatória para gestão de CAPEX.</div>
+        <div id="siteError" class="error-msg">⚠ ERRO: Definição de Site Code obrigatória para orquestração de recursos.</div>
 
-        <h2>3. Infraestrutura & Densidade</h2>
+        <h2>3. Dimensionamento de Infraestrutura</h2>
         <div class="restriction-box">
-            ⚠️ MÉXICO: Rack Mín: 45U | Densidade: 2 kVA (Min) - 6 kVA (Max).
+            ⚠ ALERTA MÉXICO (MEXIX01): Capacidade de Rack fixada entre 45U. Range de potência: 2.0 kVA - 6.0 kVA.
         </div>
         <div class="grid-3">
             <div class="field-group">
-                <label>Qtd. Racks</label>
+                <label>Volume (Qtd. Racks)</label>
                 <input type="number" id="racks" min="1" placeholder="Ex: 5">
             </div>
             <div class="field-group">
-                <label>Densidade (kVA p/ Rack)</label>
+                <label>Potência (kVA p/ Rack)</label>
                 <input type="number" id="kva" step="0.1" placeholder="Ex: 4.5">
             </div>
             <div class="field-group">
                 <label>Modelo Financeiro</label>
                 <select id="setupModel">
-                    <option value="Upfront (Integral)">Upfront (CAPEX Integral)</option>
-                    <option value="OpEx (Diluído)">Diluído (OpEx Model)</option>
+                    <option value="Upfront (Integral)">CAPEX Upfront (Integral)</option>
+                    <option value="OpEx (Diluído)">OPEX Model (Diluído)</option>
                 </select>
             </div>
         </div>
 
-        <h2>4. Conectividade & IP</h2>
+        <h2>4. Core Network & IP</h2>
         <div class="grid-3">
             <div class="field-group">
-                <label>Conexão Principal</label>
+                <label>Topologia Principal</label>
                 <select id="connModel">
                     <option value="Nenhum">Selecione...</option>
-                    <option value="Fibra Apagada">Fibra Apagada</option>
-                    <option value="MPLS">MPLS</option>
-                    <option value="Internet Dedicada">Internet Dedicada</option>
-                    <option value="L2L">L2L</option>
+                    <option value="Fibra Apagada">Fibra Apagada (Dark Fiber)</option>
+                    <option value="MPLS">MPLS / L3VPN</option>
+                    <option value="Internet Dedicada">Internet Dedicada (DIA)</option>
+                    <option value="L2L">Lan-to-Lan (L2L)</option>
                 </select>
             </div>
             <div class="field-group">
-                <label>Banda (Mbps/Gbps)</label>
+                <label>Throughput (Banda)</label>
                 <input type="text" id="bandwidth" placeholder="Ex: 10 Gbps">
             </div>
             <div class="field-group">
-                <label>Recursos IPv4</label>
+                <label>Alocação IPv4</label>
                 <select id="ipv4">
-                    <option value="Nenhum">Nenhum</option>
-                    <option value="/29 (5 IPs)">/29 (5 IPs)</option>
-                    <option value="/28 (13 IPs)">/28 (13 IPs)</option>
+                    <option value="Nenhum">Sem Bloco Adicional</option>
+                    <option value="/29 (5 IPs)">/29 (5 IPs Úteis)</option>
+                    <option value="/28 (13 IPs)">/28 (13 IPs Úteis)</option>
                 </select>
             </div>
         </div>
@@ -283,74 +386,74 @@
         <div class="grid-3">
             <div class="services-box">
                 <h3>5.1 Conectividade</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Interno MRC+NRC"> Cross Connect Interno MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Externo MRC+NRC"> Cross Connect Externo MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Optical Fiber Backbone MRC+NRC"> Optical Fiber Backbone MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net con carriers MRC"> On-net con carriers MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="IX Access / Peering MRC"> IX Access / Peering MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cloud Connect MRC"> Cloud Connect MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Interno MRC+NRC"> Cross Connect Interno</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Externo MRC+NRC"> Cross Connect Externo</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Optical Fiber Backbone MRC+NRC"> Optical Fiber Backbone</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net con carriers MRC"> On-net carriers</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="IX Access / Peering MRC"> IX Access / Peering</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cloud Connect MRC"> Cloud Connect</label>
             </div>
             
             <div class="services-box">
                 <h3>5.2 Espaço & Infra</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Aluguel de Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="WorkArea MRC+NRC"> WorkArea MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage (Gaiola) NRC"> Cage (Gaiola) NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalação/Conversão de Rack MRC+NRC"> Instalação/Conversão de Rack MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Aluguel de Espaço MRC+NRC"> Aluguel de Espaço</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="WorkArea MRC+NRC"> WorkArea (NOC)</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage (Gaiola) NRC"> Cage (Gaiola Privada)</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalação/Conversão de Rack MRC+NRC"> Setup/Conversão Rack</label>
             </div>
 
             <div class="services-box">
                 <h3>5.3 Infra Elétrica</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas MRC+NRC"> Instalações Elétricas MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Circuitos Adicionais MRC+NRC"> Circuitos Adicionais MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs (Réguas) MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Relatório de Consumo MRC"> Relatório de Consumo MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Redundância (A/B) MRC"> Redundância (A/B) MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas MRC+NRC"> Infraestrutura Elétrica</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Circuitos Adicionais MRC+NRC"> Circuitos Adicionais</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs (Réguas) MRC/NRC"> Smart rPDUs</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Relatório de Consumo MRC"> Telemetria de Consumo</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Redundância (A/B) MRC"> Redundância A/B</label>
             </div>
 
             <div class="services-box">
                 <h3>5.4 Serviços Técnicos (IC²)</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands & Eyes MRC"> Smart Hands & Eyes MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte Especializado MRC"> Suporte Especializado MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Monitoramento BMS MRC/NRC"> Monitoramento BMS MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Serviço 24x7 / SLA Custom MRC"> Serviço 24x7 / SLA Custom MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands & Eyes MRC"> Smart Hands & Eyes</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte Especializado MRC"> Suporte L2/L3 Especializado</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Monitoramento BMS MRC/NRC"> Integração BMS</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Serviço 24x7 / SLA Custom MRC"> SLA Customizado 24x7</label>
             </div>
 
             <div class="services-box">
-                <h3>5.5 Segurança Física/Lógica</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Patrolling MRC"> Patrolling MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring MRC/NRC"> CCTV Monitoring MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Customizado MRC+NRC"> Acesso Customizado MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico MRC+NRC"> Acesso Biométrico MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Anti-DDoS MRC"> Anti-DDoS MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="SOC / SIEM MRC"> SOC / SIEM MRC</label>
+                <h3>5.5 Segurança Lógica/Física</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Patrolling MRC"> Physical Patrolling</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring MRC/NRC"> CCTV Monitoring</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Customizado MRC+NRC"> Controle Acesso Custom</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico MRC+NRC"> Acesso Biométrico</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Anti-DDoS MRC"> Mitigação Anti-DDoS</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="SOC / SIEM MRC"> Integração SOC / SIEM</label>
             </div>
 
             <div class="services-box">
                 <h3>5.6 Cloud & 5.7 Logística</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Private/Hybrid Cloud MRC"> Private/Hybrid Cloud MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse (Armazém) MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Portal do Cliente MRC"> Portal do Cliente MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Private/Hybrid Cloud MRC"> Private/Hybrid Cloud Node</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse (Armazém) MRC+NRC"> Logística & Warehouse</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Portal do Cliente MRC"> Access Portal API</label>
             </div>
         </div>
 
-        <h2>6. Termos Comerciais</h2>
+        <h2>6. Parâmetros Comerciais</h2>
         <div class="grid-3">
             <div class="field-group">
-                <label>Duração do Contrato</label>
+                <label>Duração de Contrato (Lock-in)</label>
                 <select id="term">
-                    <option value="24 meses (5%)">24 meses (5%)</option>
-                    <option value="36 meses (7%)">36 meses (7%)</option>
-                    <option value="48 meses (8.5%)">48 meses (8.5%)</option>
-                    <option value="60+ meses (10%)">60+ meses (10%)</option>
+                    <option value="24 meses (5%)">24 Meses (5% Discount)</option>
+                    <option value="36 meses (7%)">36 Meses (7% Discount)</option>
+                    <option value="48 meses (8.5%)">48 Meses (8.5% Discount)</option>
+                    <option value="60+ meses (10%)">60+ Meses (10% Discount)</option>
                 </select>
             </div>
         </div>
 
         <div class="actions">
-            <button type="button" class="btn-primary" onclick="processAction('view')">Gerar Qualificação</button>
-            <button type="button" class="btn-outline" onclick="processAction('copy')">Copiar Resumo</button>
-            <button type="button" class="btn-outline" onclick="processAction('email')">📧 Enviar para Engenharia</button>
+            <button type="button" class="btn-primary" onclick="processAction('view')">Compilar Payload</button>
+            <button type="button" class="btn-outline" onclick="processAction('copy')">Copiar p/ Clipboard</button>
+            <button type="button" class="btn-outline" onclick="processAction('email')">Disparar p/ Engenharia</button>
         </div>
     </form>
 
@@ -364,11 +467,13 @@
         const error = document.getElementById('siteError');
         if (sites.length === 0) {
             section.style.borderColor = "var(--danger)";
+            section.style.boxShadow = "0 0 15px rgba(239, 68, 68, 0.2)";
             error.style.display = "block";
             section.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return false;
         }
-        section.style.borderColor = "#eee";
+        section.style.borderColor = "var(--border)";
+        section.style.boxShadow = "none";
         error.style.display = "none";
         return true;
     }
@@ -382,24 +487,29 @@
         let svcs = [];
         document.querySelectorAll('input[name="svc"]:checked').forEach(c => svcs.push(`> ${c.value}`));
 
-        return `=== NEXTSTREAM PARTNER QUALIFICATION ===\n\n` +
-               `[CLIENTE FINAL]\n` +
-               `Nome: ${p('clientName')}\n` +
-               `Domínio: ${p('clientDomain')}\n` +
-               `Vertical: ${p('clientVertical')}\n` +
-               `Workload: ${p('clientWorkload')}\n\n` +
-               `[PARCEIRO / DATA]\n` +
-               `Solicitante: ${p('partner')}\n` +
-               `Data Ref: ${p('reqDate')}\n\n` +
-               `[ALOCAÇÃO GEOGRÁFICA]\n` +
-               `Site Codes: ${sites.join(', ')}\n\n` +
-               `[INFRA & CONECTIVIDADE]\n` +
-               `Capacidade: ${p('racks')} Racks @ ${p('kva')} kVA/Rack\n` +
-               `Financeiro: ${p('setupModel')} | Termo: ${p('term')}\n` +
-               `Rede: ${p('connModel')} (${p('bandwidth')}) | IP: ${p('ipv4')}\n\n` +
-               `[SERVIÇOS SELECIONADOS]\n` +
-               `${svcs.join('\n') || 'Nenhum'}\n\n` +
-               `========================================`;
+        return `SYSTEM_LOG: [NEXTSTREAM_PIPELINE_ENTRY]\n` +
+               `STATUS: PRE-QUALIFIED\n\n` +
+               `[ENTITY_METADATA]\n` +
+               `Client_Name: ${p('clientName')}\n` +
+               `Root_Domain: ${p('clientDomain')}\n` +
+               `Vertical_ID: ${p('clientVertical')}\n` +
+               `Core_Workload: ${p('clientWorkload')}\n\n` +
+               `[REQUEST_ORIGIN]\n` +
+               `Partner_ID: ${p('partner')}\n` +
+               `Timestamp: ${p('reqDate')}\n\n` +
+               `[NODE_ALLOCATION]\n` +
+               `Target_Sites: [${sites.join(', ')}]\n\n` +
+               `[HARDWARE_PROFILE]\n` +
+               `Footprint: ${p('racks')} Racks\n` +
+               `Power_Density: ${p('kva')} kVA/Rack\n` +
+               `Fin_Model: ${p('setupModel')}\n` +
+               `Contract_Term: ${p('term')}\n\n` +
+               `[NETWORK_TOPOLOGY]\n` +
+               `Link_Type: ${p('connModel')} @ ${p('bandwidth')}\n` +
+               `IP_Subnet: ${p('ipv4')}\n\n` +
+               `[SERVICE_BOM]\n` +
+               `${svcs.join('\n') || '> NO_ADDITIONAL_SERVICES'}\n\n` +
+               `END_OF_RECORD`;
     }
 
     function processAction(mode) {
@@ -409,10 +519,11 @@
             const out = document.getElementById('summaryOutput');
             out.innerText = text;
             out.style.display = 'block';
+            out.scrollIntoView({ behavior: 'smooth', block: 'end' });
         } else if (mode === 'copy') {
-            navigator.clipboard.writeText(text).then(() => alert('Resumo copiado para a área de transferência!'));
+            navigator.clipboard.writeText(text).then(() => alert('Payload copiado para a área de transferência!'));
         } else if (mode === 'email') {
-            window.location.href = `mailto:pfischer@nextstream.com?subject=Qualificação: ${document.getElementById('clientName').value}&body=${encodeURIComponent(text)}`;
+            window.location.href = `mailto:pfischer@nextstream.com?subject=HubSpot Payload: ${document.getElementById('clientName').value}&body=${encodeURIComponent(text)}`;
         }
     }
 </script>
