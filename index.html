@@ -24,7 +24,7 @@
         }
 
         .container {
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
             background: var(--white);
             padding: 30px;
@@ -45,16 +45,16 @@
         }
 
         h1 { color: var(--primary); margin: 0; font-size: 24px; }
-        h2 { border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px; color: var(--primary); font-size: 20px; }
-        h3 { color: #444; font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-        h4 { margin: 10px 0 5px 0; color: var(--primary); }
+        h2 { border-left: 5px solid var(--primary); padding-left: 10px; margin-top: 30px; color: var(--primary); font-size: 18px; text-transform: uppercase; }
+        h3 { color: #444; font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        h4 { margin: 10px 0 5px 0; color: var(--primary); font-size: 14px; }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px; }
         
         .field-group { display: flex; flex-direction: column; margin-bottom: 15px; }
-        label { font-weight: bold; margin-bottom: 5px; font-size: 14px; }
-        input[type="text"], input[type="number"], input[type="date"], select { 
+        label { font-weight: bold; margin-bottom: 5px; font-size: 13px; }
+        input, select { 
             padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 100%; box-sizing: border-box;
         }
 
@@ -65,7 +65,7 @@
             background: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
-            border: 2px solid #eee; /* Borda ajustável para validação */
+            border: 2px solid #eee;
             transition: border-color 0.3s;
         }
 
@@ -92,12 +92,12 @@
             border-left: 5px solid var(--accent);
             padding: 10px;
             margin: 10px 0;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .quote-box {
-            font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic;
+            font-size: 12px; color: #777; margin-bottom: 15px; font-style: italic; background: #f0f7ff; padding: 10px; border-radius: 4px;
         }
 
         .actions {
@@ -106,6 +106,8 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
 
         button {
@@ -115,6 +117,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
+            font-size: 14px;
         }
 
         .btn-primary { background: var(--primary); color: white; }
@@ -126,13 +129,14 @@
         #summaryOutput {
             margin-top: 30px;
             padding: 20px;
-            background: #f0f4f8;
+            background: #2d3436;
+            color: #dfe6e9;
             border-radius: 8px;
             display: none;
             white-space: pre-wrap;
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 13px;
-            border: 1px dashed #0056b3;
+            border: 1px solid #000;
         }
         
         .error-msg { color: var(--danger); font-size: 12px; font-weight: bold; display: none; margin-top: 5px; }
@@ -144,19 +148,47 @@
     <header>
         <img src="https://nextstream.com/wp-content/uploads/2025/06/Nextstream-azul.svg" alt="NextStream">
         <h1>PARTNER ALLIANCE PORTAL</h1>
-        <p>Formulário de Qualificação Integrado ao HubSpot</p>
+        <p>Qualificação de Oportunidades & Alocação de CAPEX</p>
     </header>
 
     <form id="qualifForm">
-        <h2>1. Perfil da Oportunidade</h2>
+        <h2>1. Identificação do Cliente Final (Lead Enrichment)</h2>
         <div class="grid-3">
             <div class="field-group">
                 <label>Parceiro / Solicitante</label>
-                <input type="text" id="partner" placeholder="Nome da sua empresa">
+                <input type="text" id="partner" placeholder="Sua Empresa">
             </div>
             <div class="field-group">
-                <label>Cliente Final (Indústria)</label>
-                <input type="text" id="client" placeholder="Ex: Setor Bancário">
+                <label>Nome do Cliente Final</label>
+                <input type="text" id="clientName" placeholder="Razão Social / Nome Fantasia">
+            </div>
+            <div class="field-group">
+                <label>Domínio do Cliente</label>
+                <input type="text" id="clientDomain" placeholder="empresa.com.br">
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="field-group">
+                <label>Vertical / Indústria</label>
+                <select id="clientVertical">
+                    <option value="Não Informado">Selecione...</option>
+                    <option value="Fintech / Financeiro">Serviços Financeiros / Fintech</option>
+                    <option value="Cloud / MSP / IT">Cloud / IT Service Provider</option>
+                    <option value="Governo / Público">Governo / Setor Público</option>
+                    <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+                    <option value="Saúde / Farma">Saúde / Farma</option>
+                    <option value="Indústria / Agro">Agronegócio / Indústria</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <label>Workload Principal</label>
+                <select id="clientWorkload">
+                    <option value="Não Informado">Selecione...</option>
+                    <option value="IA / NPU Inference">IA / Inference (High Density)</option>
+                    <option value="Disaster Recovery">Disaster Recovery (DR)</option>
+                    <option value="Legacy / ERP">Migração Legacy / ERP</option>
+                    <option value="Edge / Telecom">Edge / Telecom</option>
+                </select>
             </div>
             <div class="field-group">
                 <label>Data da Solicitação</label>
@@ -164,32 +196,32 @@
             </div>
         </div>
 
-        <h2>2. Alocação Geográfica Exata (Estratégia de CAPEX)</h2>
+        <h2>2. Alocação Geográfica Exata (Mapeamento de Demanda)</h2>
         <div class="quote-box">
-            "A visibilidade regional precoce permite o gerenciamento inteligente de CAPEX e eficiência de distribuição." (Dent & White)
+            "A visibilidade regional precoce é o que permite gerenciar o CAPEX e a eficiência de distribuição de forma inteligente." (Dent & White)
         </div>
         
         <div class="sites-container" id="geoAllocationSection">
-            <div class="country-group" data-region="LATAM-BR">
+            <div class="country-group">
                 <h4>🇧🇷 BRASIL</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="GRUTB01"> Tamboré (GRUTB01)</label>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="CWBCT01"> Curitiba (CWBCT01)</label>
             </div>
-            <div class="country-group" data-region="LATAM-MX">
+            <div class="country-group">
                 <h4>🇲🇽 MÉXICO</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="MEXIX01"> Ixtlahuaca (MEXIX01)</label>
             </div>
-            <div class="country-group" data-region="LATAM-AR">
+            <div class="country-group">
                 <h4>🇦🇷 ARGENTINA</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="EZEBA01"> Barracas (EZEBA01)</label>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="EZEVE01"> Velez (EZEVE01)</label>
             </div>
-            <div class="country-group" data-region="LATAM-PE">
+            <div class="country-group">
                 <h4>🇵🇪 PERU</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="LIMLI01"> Lince (LIMLI01)</label>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="LIMMO01"> Monterico (LIMMO01)</label>
             </div>
-            <div class="country-group" data-region="LATAM-CL">
+            <div class="country-group">
                 <h4>🇨🇱 CHILE</h4>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="SCLPA01"> Paine 1 (SCLPA01)</label>
                 <label class="checkbox-label"><input type="checkbox" name="site" value="SCLPA02"> Paine 2 (SCLPA02)</label>
@@ -197,34 +229,34 @@
                 <label class="checkbox-label"><input type="checkbox" name="site" value="SCLSM01"> San Martin (SCLSM01)</label>
             </div>
         </div>
-        <div id="siteError" class="error-msg">⚠️ Selecione ao menos um Site para continuar.</div>
+        <div id="siteError" class="error-msg">⚠️ Erro de Alocação: A definição exata do Site Code é obrigatória para gestão de CAPEX.</div>
 
-        <h2>3. Infraestrutura (Missão Crítica)</h2>
+        <h2>3. Infraestrutura & Densidade</h2>
         <div class="restriction-box">
-            ⚠️ RESTRIÇÃO MÉXICO: Rack Mín de 45U | Densidade Mín: 2 kVA | Máx: 6 kVA.
+            ⚠️ MÉXICO: Rack Mín: 45U | Densidade: 2 kVA (Min) - 6 kVA (Max).
         </div>
         <div class="grid-3">
             <div class="field-group">
                 <label>Qtd. Racks</label>
-                <input type="number" id="racks" min="1" placeholder="Ex: 10">
+                <input type="number" id="racks" min="1" placeholder="Ex: 5">
             </div>
             <div class="field-group">
-                <label>Densidade (kVA Nominal p/ Rack)</label>
-                <input type="number" id="kva" step="0.1" placeholder="Ex: 5.0">
+                <label>Densidade (kVA p/ Rack)</label>
+                <input type="number" id="kva" step="0.1" placeholder="Ex: 4.5">
             </div>
             <div class="field-group">
-                <label>Modelo Setup (CAPEX)</label>
+                <label>Modelo Financeiro</label>
                 <select id="setupModel">
-                    <option value="Upfront (Integral)">Upfront (Integral)</option>
-                    <option value="Diluído (OpEx)">Diluído (OpEx)</option>
+                    <option value="Upfront (Integral)">Upfront (CAPEX Integral)</option>
+                    <option value="OpEx (Diluído)">Diluído (OpEx Model)</option>
                 </select>
             </div>
         </div>
 
         <h2>4. Conectividade & IP</h2>
-        <div class="grid-2">
+        <div class="grid-3">
             <div class="field-group">
-                <label>Modelo de Conexão</label>
+                <label>Conexão Principal</label>
                 <select id="connModel">
                     <option value="Nenhum">Selecione...</option>
                     <option value="Fibra Apagada">Fibra Apagada</option>
@@ -234,11 +266,11 @@
                 </select>
             </div>
             <div class="field-group">
-                <label>Banda Internet</label>
-                <input type="text" id="bandwidth" placeholder="Ex: 1Gbps, 10Gbps">
+                <label>Banda (Mbps/Gbps)</label>
+                <input type="text" id="bandwidth" placeholder="Ex: 10 Gbps">
             </div>
             <div class="field-group">
-                <label>IPv4</label>
+                <label>Recursos IPv4</label>
                 <select id="ipv4">
                     <option value="Nenhum">Nenhum</option>
                     <option value="/29 (5 IPs)">/29 (5 IPs)</option>
@@ -254,51 +286,30 @@
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Interno MRC+NRC"> Cross Connect Interno MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cross Connect Externo MRC+NRC"> Cross Connect Externo MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Optical Fiber Backbone MRC+NRC"> Optical Fiber Backbone MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net con carriers MRC"> On-net com carriers MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="On-net carriers MRC"> On-net com carriers MRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="IX Access / Peering MRC"> IX Access / Peering MRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Cloud Connect MRC"> Cloud Connect MRC</label>
             </div>
-            
             <div class="services-box">
                 <h3>5.2 Espaço & Infraestrutura</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Aluguel de Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Espaço MRC+NRC"> Aluguel de Espaço MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="WorkArea MRC+NRC"> WorkArea MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage (Gaiola) NRC"> Cage (Gaiola) NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalação/Conversão de Rack MRC+NRC"> Instalação/Conversão de Rack MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Cage NRC"> Cage (Gaiola) NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Conversão Rack MRC+NRC"> Conversão de Rack MRC+NRC</label>
             </div>
-
             <div class="services-box">
-                <h3>5.3 Infraestrutura Elétrica</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas MRC+NRC"> Instalações Elétricas MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Circuitos Adicionais MRC+NRC"> Circuitos Adicionais MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs (Réguas) MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Relatório de Consumo MRC"> Relatório de Consumo MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Redundância (A/B) MRC"> Redundância (A/B) MRC</label>
+                <h3>5.3 Elétrica & 5.4 Técnicos</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Instalações Elétricas"> Instalações Elétricas MRC+NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="rPDUs MRC/NRC"> rPDUs (Réguas) MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands MRC"> Smart Hands & Eyes MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte 24x7 MRC"> Serviço 24x7 / SLA Custom MRC</label>
             </div>
-
             <div class="services-box">
-                <h3>5.4 Serviços Técnicos (IC²)</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Smart Hands & Eyes MRC"> Smart Hands & Eyes MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Suporte Especializado MRC"> Suporte Especializado MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Monitoramento BMS MRC/NRC"> Monitoramento BMS MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Serviço 24x7 / SLA Custom MRC"> Serviço 24x7 / SLA Custom MRC</label>
-            </div>
-
-            <div class="services-box">
-                <h3>5.5 Segurança Física & Lógica</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Patrolling MRC"> Patrolling MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring MRC/NRC"> CCTV Monitoring MRC/NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Customizado MRC+NRC"> Acesso Customizado MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico MRC+NRC"> Acesso Biométrico MRC+NRC</label>
+                <h3>5.5 Segurança & 5.7 Logística</h3>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="CCTV Monitoring"> CCTV Monitoring MRC/NRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Acesso Biométrico"> Acesso Biométrico MRC+NRC</label>
                 <label class="checkbox-label"><input type="checkbox" name="svc" value="Anti-DDoS MRC"> Anti-DDoS MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="SOC / SIEM MRC"> SOC / SIEM MRC</label>
-            </div>
-
-            <div class="services-box">
-                <h3>5.6 Cloud & 5.7 Logística</h3>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Private/Hybrid Cloud MRC"> Private/Hybrid Cloud MRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse (Armazém) MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
-                <label class="checkbox-label"><input type="checkbox" name="svc" value="Portal do Cliente MRC"> Portal do Cliente MRC</label>
+                <label class="checkbox-label"><input type="checkbox" name="svc" value="Warehouse MRC+NRC"> Warehouse (Armazém) MRC+NRC</label>
             </div>
         </div>
 
@@ -316,9 +327,9 @@
         </div>
 
         <div class="actions">
-            <button type="button" class="btn-primary" onclick="processForm('view')">Gerar Qualificação Completa</button>
-            <button type="button" class="btn-outline" onclick="processForm('copy')">Copiar Texto</button>
-            <button type="button" class="btn-outline" onclick="processForm('email')">📧 Enviar para PFischer</button>
+            <button type="button" class="btn-primary" onclick="processAction('view')">Gerar Qualificação</button>
+            <button type="button" class="btn-outline" onclick="processAction('copy')">Copiar Resumo</button>
+            <button type="button" class="btn-outline" onclick="processAction('email')">📧 Enviar para Engenharia</button>
         </div>
     </form>
 
@@ -326,82 +337,61 @@
 </div>
 
 <script>
-    // Validação de Alocação Obrigatória
-    function validateGeoAllocation() {
-        const selectedSites = document.querySelectorAll('input[name="site"]:checked');
+    function validateGeo() {
+        const sites = document.querySelectorAll('input[name="site"]:checked');
         const section = document.getElementById('geoAllocationSection');
-        const errorMsg = document.getElementById('siteError');
-        
-        if (selectedSites.length === 0) {
+        const error = document.getElementById('siteError');
+        if (sites.length === 0) {
             section.style.borderColor = "var(--danger)";
-            errorMsg.style.display = "block";
-            
-            // Rola a página suavemente para o erro
+            error.style.display = "block";
             section.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return false;
         }
-        
         section.style.borderColor = "#eee";
-        errorMsg.style.display = "none";
+        error.style.display = "none";
         return true;
     }
 
-    // Gera o texto base do resumo
-    function generateSummaryText() {
-        const partner = document.getElementById('partner').value || 'N/A';
-        const client = document.getElementById('client').value || 'N/A';
-        const reqDate = document.getElementById('reqDate').value || 'N/A';
+    function generateSummary() {
+        const p = (id) => document.getElementById(id).value || 'N/A';
         
-        const racks = document.getElementById('racks').value || '0';
-        const kva = document.getElementById('kva').value || '0';
-        const setup = document.getElementById('setupModel').value;
+        let sites = [];
+        document.querySelectorAll('input[name="site"]:checked').forEach(c => sites.push(c.value));
         
-        const connModel = document.getElementById('connModel').value;
-        const bandwidth = document.getElementById('bandwidth').value || 'N/A';
-        const ipv4 = document.getElementById('ipv4').value;
-        const term = document.getElementById('term').value;
+        let svcs = [];
+        document.querySelectorAll('input[name="svc"]:checked').forEach(c => svcs.push(`> ${c.value}`));
 
-        let selectedSites = [];
-        document.querySelectorAll('input[name="site"]:checked').forEach(cb => selectedSites.push(cb.value));
-
-        let selectedSvcs = [];
-        document.querySelectorAll('input[name="svc"]:checked').forEach(cb => selectedSvcs.push(`- ${cb.value}`));
-
-        return `=== QUALIFICAÇÃO NEXTSTREAM ===\n\n` +
-               `[1] PERFIL\n` +
-               `Parceiro: ${partner}\n` +
-               `Cliente: ${client}\n` +
-               `Data: ${reqDate}\n\n` +
-               `[2] ALOCAÇÃO GEOGRÁFICA (IDs)\n` +
-               `Sites: ${selectedSites.join(', ')}\n\n` +
-               `[3] INFRAESTRUTURA\n` +
-               `${racks} Racks | ${kva} kVA | Setup: ${setup}\n\n` +
-               `[4] CONECTIVIDADE & IP\n` +
-               `Modelo: ${connModel} | Banda: ${bandwidth} | IPv4: ${ipv4}\n\n` +
-               `[5] SERVIÇOS SELECIONADOS\n` +
-               `${selectedSvcs.join('\n') || 'Nenhum serviço selecionado'}\n\n` +
-               `[6] TERMOS\n` +
-               `Contrato: ${term}\n` +
-               `===============================`;
+        return `=== NEXTSTREAM PARTNER QUALIFICATION ===\n\n` +
+               `[CLIENTE FINAL]\n` +
+               `Nome: ${p('clientName')}\n` +
+               `Domínio: ${p('clientDomain')}\n` +
+               `Vertical: ${p('clientVertical')}\n` +
+               `Workload: ${p('clientWorkload')}\n\n` +
+               `[PARCEIRO / DATA]\n` +
+               `Solicitante: ${p('partner')}\n` +
+               `Data Ref: ${p('reqDate')}\n\n` +
+               `[ALOCAÇÃO GEOGRÁFICA]\n` +
+               `Site Codes: ${sites.join(', ')}\n\n` +
+               `[INFRA & CONECTIVIDADE]\n` +
+               `Capacidade: ${p('racks')} Racks @ ${p('kva')} kVA/Rack\n` +
+               `Financeiro: ${p('setupModel')} | Termo: ${p('term')}\n` +
+               `Rede: ${p('connModel')} (${p('bandwidth')}) | IP: ${p('ipv4')}\n\n` +
+               `[SERVIÇOS SELECIONADOS]\n` +
+               `${svcs.join('\n') || 'Nenhum'}\n\n` +
+               `========================================`;
     }
 
-    // Processa a ação baseada no botão clicado
-    function processForm(action) {
-        if (!validateGeoAllocation()) return;
-
-        const summaryText = generateSummaryText();
-        const outputElement = document.getElementById('summaryOutput');
-
-        if (action === 'view') {
-            outputElement.innerText = summaryText;
-            outputElement.style.display = 'block';
-        } else if (action === 'copy') {
-            navigator.clipboard.writeText(summaryText)
-                .then(() => alert('Texto copiado com sucesso! Pronto para colar no HubSpot ou CRM.'))
-                .catch(err => console.error('Erro ao copiar', err));
-        } else if (action === 'email') {
-            const encodedText = encodeURIComponent(summaryText);
-            window.location.href = `mailto:pfischer@nextstream.com?subject=Nova Qualificação Portal NextStream&body=${encodedText}`;
+    function processAction(mode) {
+        if (!validateGeo()) return;
+        const text = generateSummary();
+        if (mode === 'view') {
+            const out = document.getElementById('summaryOutput');
+            out.innerText = text;
+            out.style.display = 'block';
+        } else if (mode === 'copy') {
+            navigator.clipboard.writeText(text).then(() => alert('Resumo copiado para o HubSpot!'));
+        } else if (mode === 'email') {
+            window.location.href = `mailto:pfischer@nextstream.com?subject=Qualificação: ${document.getElementById('clientName').value}&body=${encodeURIComponent(text)}`;
         }
     }
 </script>
